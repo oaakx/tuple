@@ -45,4 +45,20 @@ $(document).ready(function(){
       $("#list-group-append").append(html);
     }
   });
+
+  document.getElementById("searchTupleButton").onclick = function() {
+  	$(".list-group-item").each(function(){
+    	var searchQuery = document.getElementById("searchTuple").value;
+    	if (searchQuery!=""){
+      		if ($(this).hasClass(searchQuery)) {
+        		$(this).show();
+      		} else {
+        		$(this).hide();
+      		}
+      	}else{
+      		$(this).show();
+      	}
+	});
+  };
+
 });
