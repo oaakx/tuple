@@ -14,8 +14,11 @@
   <title>kaisttuple</title>
 </head>
 
-<body>
-  <div class="topnavbar">
+<body> 
+</body>
+
+<template name="home">
+	<div class="topnavbar">
     {{> topnavbar}}
   </div>
   <!--TODO: FIX issue with top bar, make it "sticky"-->
@@ -24,11 +27,12 @@
   <div class="navbardiv">
     {{> bottomnavbar}}
   </div>
-</body>
+</template>
 
 <template name="topnavbar">
   <div style="padding-left: 310px;">
-    <i class="fas fa-plus-circle" id="plusButton"></i></div>
+		<i class="fas fa-plus-circle" id="plusButton"></i>
+	</div>
   <h4>KAIST TUPLE</h4>  
   {{> searchbar}}
 </template>
@@ -60,4 +64,15 @@
       </li>
     </ul>
   </nav>
+</template>
+
+<template name="fuuk">	
+  <!--TODO: FIX issue with top bar, make it "sticky"-->
+  <div>
+		<h1>FAAAKAKKAKA</h1>
+	</div>
+
+  <div class="navbardiv">
+    {{> bottomnavbar}}
+  </div>
 </template>
