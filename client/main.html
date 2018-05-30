@@ -17,31 +17,31 @@
 </head>
 
 <body>
-  <h1>KaisT_Tuple</h1>
-
-  {{> hello}}
-  {{> info}}
-  {{> navbar}}
+  {{> topnavbar}}
+  <div class="navbardiv">
+    {{> bottomnavbar}}
+  </div>
   
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="topnavbar">
+  <div class="topnavbar">
+    <h4>KAIST TUPLE</h4>
+    {{> searchbar}}
+  </div>
 </template>
 
-<template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+<template name="searchbar">
+  <div class = "input-group" >
+    <input class = "form-control" type="text" placeholder="Search" id="searchBuilding">
+    <div class = "input-group-append">
+      <button class="btn btn-outline-primary" type="submit" id=searchBuildingButton style="color:#333;border-color:#333;"><i class="fa fa-search"></i></button>
+    </div>  
+  </div>
 </template>
-  
+
 <!-- Align properly, add pictures -->
-<template name="navbar">
+<template name="bottomnavbar">
   <nav class = "navbar navbar-expand sticky-top navbar-dark bg-dark">
     <ul class="navbar-nav  mr-auto">
       <li class="nav-item active">
