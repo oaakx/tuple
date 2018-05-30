@@ -63,7 +63,7 @@ $(document).ready(function(){
 
   document.getElementById("plusButton").style.cursor = "pointer";
   document.getElementById("plusButton").onclick = function() {
-  	console.log("YaY");
+  	window.open('createTuple.html',"_self");
   };
 
 });
