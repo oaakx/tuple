@@ -9,26 +9,26 @@
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
-    <!-- TODO: bind main.css-->
     <link rel="stylesheet" type="text/css" href="main.css">
 
   <title>kaisttuple</title>
 </head>
 
 <body>
-  {{> topnavbar}}
+  <div class="topnavbar">
+    {{> topnavbar}}
+  </div>
+  <!--TODO: FIX issue with top bar, make it "sticky"-->
+  <div id = "list-group-append" style="margin-top: 80px;"></div>
+
   <div class="navbardiv">
     {{> bottomnavbar}}
   </div>
-  
 </body>
 
 <template name="topnavbar">
-  <div class="topnavbar">
     <h4>KAIST TUPLE</h4>
     {{> searchbar}}
-  </div>
 </template>
 
 <template name="searchbar">
