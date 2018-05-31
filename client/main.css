@@ -2,6 +2,7 @@
 a.button{
   float: right;
   display: inline;
+  position: relative;
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
   border-radius: 28px;
@@ -12,6 +13,7 @@ a.button{
   padding: 5px 15px 5px 15px;
   text-decoration: none;
   margin-top: 4px;
+  z-index: 99999;
 }
 
 .navbardiv {
@@ -35,4 +37,8 @@ h4{
   top: 0;
   width: 100%;
   text-align: center;
+}
+
+li.nav-item {
+  width: 25%;
 }
