@@ -46,11 +46,11 @@ $(document).ready(function(){
         return;
       }
       console.log(tuple);
-      let html = 
+      let html =
       '<div class = "list-group-item list-group-secondary ' + tuple.title.toLowerCase() + '">' +
-        '<h5 class = "mb-1">'+ tuple.title + " " + '</h5>' + 
+        '<h5 class = "mb-1">'+ tuple.title + " " + '</h5>' +
         '<small class = "mb-4"> By: ' + tuple.creator + '</small>'+
-        '<p class = "mt-2">' + tuple.description + '</p>' + 
+        '<p class = "mt-2">' + tuple.description + '</p>' +
         '<a class = "mt-3 btn btn-outline-info" href = "../fuuk" style = "font-size: 12px;"> More Description </a>'
       '</div>';
       $("#list-group-append").append(html);
@@ -74,29 +74,34 @@ $(document).ready(function(){
     },
   });
 
+<<<<<<< HEAD
   Template.fuuk.events({
     'click button'(event, instance) {
         console.log("YAY");
+=======
+  Template.home.events({
+    'click plusButton': function(e) {
+>>>>>>> 5bfafaf2474b613bcd9a83941e3f957f0cb8cb2b
         let todayDate = new Date();
         var time = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
         let bar = "-";
         let dateOfUpload = (todayDate.getMonth() + 1).toString().concat(bar, (todayDate.getDate()).toString(), bar, (todayDate.getFullYear()).toString(), bar, time.toString());
         let title = $("#title").val();
-        let description = $("#description").val();  
+        let description = $("#description").val();
         let type = $("input[name=inlineRadioOptions]:checked").val();
         if (description == "" || title == "") {
           return;
         }
         firebase.database().ref('tuples/' + dateOfUpload).set({
           title: title,
-          description: description, 
+          description: description,
           creator: "Bazo",
           members: ["Bazo"],
           type: type
         });
 
         $("#title").val("");
-        $("#description").val(""); 
+        $("#description").val("");
         $("input[name=inlineRadioOptions]:checked").val("");
     },
   });
@@ -108,7 +113,3 @@ $(document).ready(function(){
     Router.go('../fuuk');
   };*/
 });
-
-
-
-
