@@ -76,6 +76,7 @@ $(document).ready(function(){
 
   Template.fuuk.events({
     'click button'(event, instance) {
+        console.log("YAY");
         let todayDate = new Date();
         var time = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
         let bar = "-";
