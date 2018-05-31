@@ -41,11 +41,16 @@ $(document).ready(function(){
   	let dbSnapshot = snapshot.val();
     let keyVal = Object.keys(dbSnapshot);
     for ( var i = 0; i < keyVal.length; i++) {
-      let tupleDescription = dbSnapshot[keyVal[i]];
+      let tuple = dbSnapshot[keyVal[i]];
+      if (!tuple.title){
+        return;
+      }
+      console.log(tuple);
       let html = 
-      '<div class = "list-group-item list-group-secondary ' + keyVal[i] + '">' +
-        '<h5 class = "mb-1">'+ keyVal[i] + " " + '</h5>' + 
-        '<p class = "mt-2">' + tupleDescription + '</p>' + 
+      '<div class = "list-group-item list-group-secondary ' + tuple.title.toLowerCase() + '">' +
+        '<h5 class = "mb-1">'+ tuple.title + " " + '</h5>' + 
+        '<small class = "mb-4"> By: ' + tuple.creator + '</small>'+
+        '<p class = "mt-2">' + tuple.description + '</p>' + 
         '<a class = "mt-3 btn btn-outline-info" href = "../fuuk" style = "font-size: 12px;"> More Description </a>'
       '</div>';
       $("#list-group-append").append(html);
@@ -55,7 +60,7 @@ $(document).ready(function(){
   Template.searchbar.events({
     'click button'(event, instance) {
       $(".list-group-item").each(function(){
-      var searchQuery = document.getElementById("searchTuple").value;
+      var searchQuery = document.getElementById("searchTuple").value.toLowerCase();
       if (searchQuery!=""){
           if ($(this).hasClass(searchQuery)) {
             $(this).show();
@@ -66,6 +71,32 @@ $(document).ready(function(){
           $(this).show();
         }
     });
+    },
+  });
+
+  Template.fuuk.events({
+    'click button'(event, instance) {
+        let todayDate = new Date();
+        var time = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
+        let bar = "-";
+        let dateOfUpload = (todayDate.getMonth() + 1).toString().concat(bar, (todayDate.getDate()).toString(), bar, (todayDate.getFullYear()).toString(), bar, time.toString());
+        let title = $("#title").val();
+        let description = $("#description").val();  
+        let type = $("input[name=inlineRadioOptions]:checked").val();
+        if (description == "" || title == "") {
+          return;
+        }
+        firebase.database().ref('tuples/' + dateOfUpload).set({
+          title: title,
+          description: description, 
+          creator: "Bazo",
+          members: ["Bazo"],
+          type: type
+        });
+
+        $("#title").val("");
+        $("#description").val(""); 
+        $("input[name=inlineRadioOptions]:checked").val("");
     },
   });
 
