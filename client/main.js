@@ -74,14 +74,8 @@ $(document).ready(function(){
     },
   });
 
-<<<<<<< HEAD
-  Template.fuuk.events({
-    'click button'(event, instance) {
-        console.log("YAY");
-=======
   Template.home.events({
     'click plusButton': function(e) {
->>>>>>> 5bfafaf2474b613bcd9a83941e3f957f0cb8cb2b
         let todayDate = new Date();
         var time = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
         let bar = "-";
