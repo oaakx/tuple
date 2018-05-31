@@ -13,6 +13,32 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
+Router.route('/test',function(){
+  this.layout('GeneralLayout');
+  this.render('browsebar',{to: "header"});
+  this.render('browsebody',{to: "body"});
+  $(document).ready(function(){
+    database.ref("tuples/").once("value").then(function(snapshot){
+    	let dbSnapshot = snapshot.val();
+      let keyVal = Object.keys(dbSnapshot);
+      for ( var i = 0; i < keyVal.length; i++) {
+        let tuple = dbSnapshot[keyVal[i]];
+        if (!tuple.title){
+          return;
+        }
+        let html =
+          '<div class = "list-group-item list-group-secondary ' + tuple.title.toLowerCase() + '">' +
+            '<h5 class = "mb-1">'+ tuple.title + " " + '</h5>' +
+            '<small class = "mb-4"> By: ' + tuple.creator + '</small>'+
+            '<p class = "mt-2">' + tuple.description + '</p>' +
+            '<a class = "mt-3 btn btn-outline-info" href = "../tupleDescription/'+ i.toString() + '" style = "font-size: 12px;"> More Description </a>'
+          '</div>';
+        $("#list-group-append").append(html);
+      }
+    });
+  });
+});
+
 Router.route('/', function () {
   this.render('Home');
   $(document).ready(function(){
