@@ -6,13 +6,12 @@ a.button{
   -moz-border-radius: 28;
   border-radius: 28px;
   font-family: Courier New;
-  font-size: 90%;
+  font-size: 14px;
   color: #ffffff;
   background: #31404a;
   padding: 5px 15px 5px 15px;
   text-decoration: none;
   margin-top: 4px;
-  z-index: 1000000;
 }
 
 .navbardiv {
@@ -23,27 +22,19 @@ a.button{
     width: 100%;
 }
 
-.top-wrapper {
-  height:10%;
+h4{
+  padding-top: 5px;
+  padding-bottom: 5px;
+	border-bottom: 2px solid #333;
 }
 
 .topnavbar {
 	background-color: white;
-  display: inline-block;
     overflow: hidden;
     position: fixed;
     top: 0;
-    height: 7%;
     width: 100%;
     text-align: center;
-    z-index: 9999;
-}
-
-.topnavbar.h4{
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-bottom:2px;
-	border-bottom: 2px solid #333;
 }
 
 #plusButton {
