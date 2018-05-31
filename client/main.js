@@ -13,8 +13,11 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
+Router.configure({
+  layoutTemplate: 'GeneralLayout'
+});
+
 Router.route('/',function(){
-  this.layout('GeneralLayout');
   this.render('browsebar',{to: "header"});
   this.render('browsebody');
   $(document).ready(function(){
@@ -40,7 +43,6 @@ Router.route('/',function(){
 });
 
 Router.route('/tupleDescription/:_id',function(){
-  this.layout('GeneralLayout');
   this.render('topbarwithback',{to: "header"});
   this.render('tupleDescription');
 
@@ -61,10 +63,10 @@ Router.route('/tupleDescription/:_id',function(){
   });
 });
 
-
-
-
-Router.route('/fuuk');
+Router.route('/fuuk',function(){
+  this.render('topbarwithback',{to: "header"});
+  this.render('fuuk');
+});
 
 Template.searchbar.events({
   'click button'(event, instance) {
@@ -108,16 +110,8 @@ Template.fuuk.events({
         //type: type
       });
 
-      
+
       return;
       //$("input[name=inlineRadioOptions]:checked").val("");
   },
 });
-
-  // make plust button refer to the createTuple screen
-  /*
-  document.getElementById("plusButton").onclick = function() {
-  	window.open('createTuple.html',"_self");
-    Router.go('../fuuk');
-  };*/
-
