@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
+import './header.html';
 import './main.html';
 
 var config = {
@@ -8,33 +9,13 @@ var config = {
   authDomain: "kaisttuple.firebaseapp.com",
   databaseURL: "https://kaisttuple.firebaseio.com",
 };
+
 firebase.initializeApp(config);
 var database = firebase.database();
-
-/*
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(5);
-});
-
-Templat e.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
-
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
-});*/
 
 Router.route('/', function () {
   this.render('Home');
   $(document).ready(function(){
-    
-
     database.ref("tuples/").once("value").then(function(snapshot){
     	let dbSnapshot = snapshot.val();
       let keyVal = Object.keys(dbSnapshot);
@@ -44,15 +25,34 @@ Router.route('/', function () {
           return;
         }
         let html =
-        '<div class = "list-group-item list-group-secondary ' + tuple.title.toLowerCase() + '">' +
-          '<h5 class = "mb-1">'+ tuple.title + " " + '</h5>' +
-          '<small class = "mb-4"> By: ' + tuple.creator + '</small>'+
-          '<p class = "mt-2">' + tuple.description + '</p>' +
-          '<a class = "mt-3 btn btn-outline-info" href = "../tupleDescription/'+ i.toString() + '" style = "font-size: 12px;"> More Description </a>'
-        '</div>';
+          '<div class = "list-group-item list-group-secondary ' + tuple.title.toLowerCase() + '">' +
+            '<h5 class = "mb-1">'+ tuple.title + " " + '</h5>' +
+            '<small class = "mb-4"> By: ' + tuple.creator + '</small>'+
+            '<p class = "mt-2">' + tuple.description + '</p>' +
+            '<a class = "mt-3 btn btn-outline-info" href = "../tupleDescription/'+ i.toString() + '" style = "font-size: 12px;"> More Description </a>'
+          '</div>';
         $("#list-group-append").append(html);
       }
     });
+});
+
+Router.route('/tupleDescription/:_id',function(){
+  this.render('tupleDescription');
+  var tupleID = this.params._id;
+  $(document).ready(function(){
+    database.ref("tuples/").once("value").then(function(snapshot){
+      let dbSnapshot = snapshot.val();
+      let keyVal = Object.keys(dbSnapshot);
+      let tuple = dbSnapshot[keyVal[parseInt(tupleID)]];
+      if (!tuple.title){
+        return;
+      }else{
+        $("#tuple-append").append("<h1>" + tuple.title + "</h1>");
+        $("#tuple-append").append("<h2>" + tuple.creator + "</h2>");
+        $("#tuple-append").append("<h3>" + tuple.description + "</h3>");
+      }
+    });
+  });
 });
 
 Router.route('/fuuk');
@@ -71,8 +71,8 @@ Template.searchbar.events({
         $(this).show();
       }
     });
-    },
-  });
+  },
+});
 
 Template.fuuk.events({
   'click button'(event, instance) {
@@ -95,7 +95,7 @@ Template.fuuk.events({
         members: ["Bazo"]//,
         //type: type
       });
-      
+
       $("#title").val("");
       $("#description").val("");
       //$("input[name=inlineRadioOptions]:checked").val("");

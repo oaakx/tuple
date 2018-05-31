@@ -1,24 +1,6 @@
-<head>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="main.css">
-
-  <title>kaisttuple</title>
-</head>
-
-<body>
-</body>
-
 <template name="home">
 	<div class="topnavbar">
+    <a href="/fuuk" class="button">Create</a>
     {{> topnavbar}}
     {{> searchbar}}
   </div>
@@ -31,9 +13,6 @@
 </template>
 
 <template name="topnavbar">
-  <div style="padding-left: 310px;">
-		<a href="/fuuk" class="button">Create</a>
-	</div>
   <h4>KAIST TUPLE</h4>
 </template>
 
@@ -64,6 +43,19 @@
       </li>
     </ul>
   </nav>
+</template>
+
+<template name="tupleDescription">
+  <div class="topnavbar">
+    <a href="/" class="button" style="float: left">Back</a>
+    {{> topnavbar}}
+  </div>
+  <!--TODO: FIX issue with top bar, make it "sticky"-->
+  <div id = "tuple-append" style="margin-top: 80px;"></div>
+
+  <div class="navbardiv">
+    {{> bottomnavbar}}
+  </div>
 </template>
 
 <template name="fuuk">
