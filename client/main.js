@@ -39,10 +39,11 @@ Router.route('/',function(){
   });
 });
 
-
-
 Router.route('/tupleDescription/:_id',function(){
+  this.layout('GeneralLayout');
+  this.render('topbarwithback',{to: "header"});
   this.render('tupleDescription');
+
   var tupleID = this.params._id;
   $(document).ready(function(){
     database.ref("tuples/").once("value").then(function(snapshot){
@@ -59,6 +60,9 @@ Router.route('/tupleDescription/:_id',function(){
     });
   });
 });
+
+
+
 
 Router.route('/fuuk');
 
@@ -88,8 +92,11 @@ Template.fuuk.events({
       let title = $("#title").val();
       let description = $("#description").val();
       //let type = $("input[name=inlineRadioOptions]:checked").val();
-      console.log(title);
-      console.log(description);
+      console.log(title.length);
+      console.log(description.length);
+      if (title.length>30){
+        return false;
+      }
       if (description == "" || title == "") {
         return;
       }
@@ -101,8 +108,7 @@ Template.fuuk.events({
         //type: type
       });
 
-      $("#title").val("");
-      $("#description").val("");
+      
       return;
       //$("input[name=inlineRadioOptions]:checked").val("");
   },

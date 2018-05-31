@@ -37,6 +37,8 @@
   </div>
 </template>
 
+
+
 <!-- Align properly, add pictures -->
 <template name="bottomnavbar">
   <nav class = "navbar navbar-expand sticky-top navbar-dark bg-dark">
@@ -57,17 +59,15 @@
   </nav>
 </template>
 
-<template name="tupleDescription">
+<template name="topbarwithback">
   <div class="topnavbar">
-    <a href="/" class="button" style="float: left">Back</a>
     {{> topnavbar}}
+    <a href="/" class="button" style="float: left">Back</a>
   </div>
-  <!--TODO: FIX issue with top bar, make it "sticky"-->
-  <div id = "tuple-append" style="margin-top: 80px;"></div>
+</template>
 
-  <div class="navbardiv">
-    {{> bottomnavbar}}
-  </div>
+<template name="tupleDescription">
+  <div id = "tuple-append" style="margin-top: 80px;"></div>
 </template>
 
 <template name="fuuk">
@@ -76,19 +76,19 @@
       <h4>KAIST TUPLE</h4>
   </div>
 
-  <div class = "jumbotron jumbotron-fluid " >
+  <div class = "jumbotron jumbotron-fluid">
     <h3 class = "text-center display-4 mb-3" style = "font-size: 30px;padding-top: 30px;">
       Create a Tuple
     </h3>
     <form class = "offset-1 col-10">
       <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" placeholder="CS350: Study Group" required>
+        <input type="text" class="form-control" id="title" placeholder="CS350: Study Group" required maxlength="30">
         <small id="emailHelp" class="form-text text-muted text-left">Title of the Tuple</small>
       </div>
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea type="textarea" class="form-control" id="description" placeholder="Studio Session" rows = "5" required> </textarea>
+        <textarea type="textarea" class="form-control" id="description" placeholder="Studio Session" rows = "5" required maxlength="500"> </textarea>
         <small id="emailHelp" class="form-text text-muted text-left">Description about the Tuple</small>
       </div>
       <!--
@@ -116,3 +116,5 @@
     {{> bottomnavbar}}
   </div>
 </template>
+
+
