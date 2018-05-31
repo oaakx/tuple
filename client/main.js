@@ -98,6 +98,7 @@ Template.fuuk.events({
       
       $("#title").val("");
       $("#description").val("");
+      return;
       //$("input[name=inlineRadioOptions]:checked").val("");
   },
 });
