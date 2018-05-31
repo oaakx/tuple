@@ -21,6 +21,12 @@ Template.hello.events({
   },
 });*/
 
+Router.route('/', function () {
+  this.render('Home');
+});
+
+Router.route('/fuuk');
+
 $(document).ready(function(){
   var config = {
     apiKey: "AIzaSyCvXSpqkE4psy1qrS1-F2P3xcJjzySSRt0",
@@ -40,7 +46,7 @@ $(document).ready(function(){
       '<div class = "list-group-item list-group-secondary ' + keyVal[i] + '">' +
         '<h5 class = "mb-1">'+ keyVal[i] + " " + '</h5>' + 
         '<p class = "mt-2">' + tupleDescription + '</p>' + 
-        '<a class = "mt-3 btn btn-outline-info" href = "../map/map1.html" style = "font-size: 12px;"> More Description </a>'
+        '<a class = "mt-3 btn btn-outline-info" href = "../fuuk" style = "font-size: 12px;"> More Description </a>'
       '</div>';
       $("#list-group-append").append(html);
     }
@@ -67,14 +73,7 @@ $(document).ready(function(){
   	//window.open('createTuple.html',"_self");
     Router.go('/createTuple');
   };
-
 });
-
-
-
-
-
-
 
 
 
