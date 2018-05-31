@@ -14,12 +14,13 @@
   <title>kaisttuple</title>
 </head>
 
-<body> 
+<body>
 </body>
 
 <template name="home">
 	<div class="topnavbar">
     {{> topnavbar}}
+    {{> searchbar}}
   </div>
   <!--TODO: FIX issue with top bar, make it "sticky"-->
   <div id = "list-group-append" style="margin-top: 80px;"></div>
@@ -31,10 +32,9 @@
 
 <template name="topnavbar">
   <div style="padding-left: 310px;">
-		<i class="fas fa-plus-circle" id="plusButton"></i>
+		<a href="/fuuk" class="button">Create</a>
 	</div>
-  <h4>KAIST TUPLE</h4>  
-  {{> searchbar}}
+  <h4>KAIST TUPLE</h4>
 </template>
 
 <template name="searchbar">
@@ -42,7 +42,7 @@
     <input class = "form-control" type="text" placeholder="Search" id="searchTuple">
     <div class = "input-group-append">
       <button class="btn btn-outline-primary" type="submit" id="searchTupleButton" style="color:#333;border-color:#333;"><i class="fa fa-search"></i></button>
-    </div>  
+    </div>
   </div>
 </template>
 
@@ -66,12 +66,12 @@
   </nav>
 </template>
 
-<template name="fuuk">	
+<template name="fuuk">
 
   <div class="topnavbar" style="background-color: white;overflow: hidden;position: fixed; top: 0; width: 100%; text-align: center; height: 30px;">
       <div style="padding-right: 350px;">
           <i class="fas fa-chevron-circle-left" id="backButton" style="font-size: 1.5em;position: absolute;z-index: 2;padding-top: 2px;"></i></div>
-      <h4>KAIST TUPLE</h4> 
+      <h4>KAIST TUPLE</h4>
   </div>
 
   <div class = "jumbotron jumbotron-fluid ">
