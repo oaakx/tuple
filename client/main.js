@@ -69,10 +69,12 @@ $(document).ready(function(){
     },
   });
 
+  // make plust button refer to the createTuple screen
+  /*
   document.getElementById("plusButton").onclick = function() {
-  	//window.open('createTuple.html',"_self");
-    Router.go('/createTuple');
-  };
+  	window.open('createTuple.html',"_self");
+    Router.go('../fuuk');
+  };*/
 });
 
 
