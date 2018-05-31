@@ -23,9 +23,10 @@ a.button{
 }
 
 h4{
+  padding-left: 80px;
   padding-top: 5px;
   padding-bottom: 5px;
-	border-bottom: 2px solid #333;
+  border-bottom: 2px solid #333;
 }
 
 .topnavbar {
@@ -35,4 +36,5 @@ h4{
   top: 0;
   width: 100%;
   text-align: center;
+  z-index: 2;
 }
