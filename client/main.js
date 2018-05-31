@@ -2,6 +2,15 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
+
+var config = {
+  apiKey: "AIzaSyCvXSpqkE4psy1qrS1-F2P3xcJjzySSRt0",
+  authDomain: "kaisttuple.firebaseapp.com",
+  databaseURL: "https://kaisttuple.firebaseio.com",
+};
+firebase.initializeApp(config);
+var database = firebase.database();
+
 /*
 Template.hello.onCreated(function helloOnCreated() {
   // counter starts at 0
@@ -24,14 +33,7 @@ Template.hello.events({
 Router.route('/', function () {
   this.render('Home');
   $(document).ready(function(){
-    var config = {
-      apiKey: "AIzaSyCvXSpqkE4psy1qrS1-F2P3xcJjzySSRt0",
-      authDomain: "kaisttuple.firebaseapp.com",
-      databaseURL: "https://kaisttuple.firebaseio.com",
-    };
-    firebase.initializeApp(config);
-
-    var database = firebase.database();
+    
 
     database.ref("tuples/").once("value").then(function(snapshot){
     	let dbSnapshot = snapshot.val();
@@ -41,7 +43,6 @@ Router.route('/', function () {
         if (!tuple.title){
           return;
         }
-        console.log(tuple);
         let html =
         '<div class = "list-group-item list-group-secondary ' + tuple.title.toLowerCase() + '">' +
           '<h5 class = "mb-1">'+ tuple.title + " " + '</h5>' +
@@ -73,7 +74,7 @@ Template.searchbar.events({
     },
   });
 
-  Template.fuuk.events({
+Template.fuuk.events({
   'click button'(event, instance) {
       let todayDate = new Date();
       var time = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
@@ -81,7 +82,9 @@ Template.searchbar.events({
       let dateOfUpload = (todayDate.getMonth() + 1).toString().concat(bar, (todayDate.getDate()).toString(), bar, (todayDate.getFullYear()).toString(), bar, time.toString());
       let title = $("#title").val();
       let description = $("#description").val();
-      let type = $("input[name=inlineRadioOptions]:checked").val();
+      //let type = $("input[name=inlineRadioOptions]:checked").val();
+      console.log(title);
+      console.log(description);
       if (description == "" || title == "") {
         return;
       }
@@ -89,13 +92,13 @@ Template.searchbar.events({
         title: title,
         description: description,
         creator: "Bazo",
-        members: ["Bazo"],
-        type: type
+        members: ["Bazo"]//,
+        //type: type
       });
-
+      
       $("#title").val("");
       $("#description").val("");
-      $("input[name=inlineRadioOptions]:checked").val("");
+      //$("input[name=inlineRadioOptions]:checked").val("");
   },
 });
 
