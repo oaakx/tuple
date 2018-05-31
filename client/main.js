@@ -13,10 +13,10 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
-Router.route('/test',function(){
+Router.route('/',function(){
   this.layout('GeneralLayout');
   this.render('browsebar',{to: "header"});
-  this.render('browsebody',{to: "body"});
+  this.render('browsebody');
   $(document).ready(function(){
     database.ref("tuples/").once("value").then(function(snapshot){
     	let dbSnapshot = snapshot.val();
@@ -39,7 +39,7 @@ Router.route('/test',function(){
   });
 });
 
-Router.route('/', function () {
+Router.route('/test', function () {
   this.render('Home');
   $(document).ready(function(){
     database.ref("tuples/").once("value").then(function(snapshot){
