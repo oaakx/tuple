@@ -1,23 +1,35 @@
-<template name="home">
+<template name="GeneralLayout">
+	<header>
+		{{> yield "header"}}
+	</header>
+	<body>
+		{{> yield}}
+	</body>
+	<footer class="navbardiv">
+		{{> bottomnavbar}}
+	</footer>
+</template>
+
+<template name="browsebar">
 	<div class="topnavbar">
     <a href="/fuuk" class="button">Create</a>
     {{> topnavbar}}
     {{> searchbar}}
   </div>
-  <!--TODO: FIX issue with top bar, make it "sticky"-->
-  <div id = "list-group-append" style="margin-top: 80px;"></div>
+</template>
 
-  <div class="navbardiv">
-    {{> bottomnavbar}}
-  </div>
+<template name="browsebody">
+	<div id = "list-group-append" style="margin-top: 80px;"></div>
 </template>
 
 <template name="topnavbar">
-  <h4>KAIST TUPLE</h4>
+	<div class="topnavbar">
+  	<h4>KAIST TUPLE</h4>
+	</div>
 </template>
 
 <template name="searchbar">
-  <div class = "input-group" >
+  <div class = "input-group" style="padding-top:4px;" >
     <input class = "form-control" type="text" placeholder="Search" id="searchTuple">
     <div class = "input-group-append">
       <button class="btn btn-outline-primary" type="submit" id="searchTupleButton" style="color:#333;border-color:#333;"><i class="fa fa-search"></i></button>
@@ -28,7 +40,7 @@
 <!-- Align properly, add pictures -->
 <template name="bottomnavbar">
   <nav class = "navbar navbar-expand sticky-top navbar-dark bg-dark">
-    <ul class="navbar-nav  mr-auto">
+    <ul class="navbar-nav" style="width:100%">
       <li class="nav-item active">
         <a class="nav-link" href="#">Tuples</a>
       </li>
