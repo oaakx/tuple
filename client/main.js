@@ -155,8 +155,8 @@ Template.browsebody.helpers({
 // TODO: need to fix this somehow
 Template.tupleDescription.helpers({
   tuple(){
-
-    return this.params._id;
+    tuples = tuplesList.find().fetch()
+    return [tuples[Router.current().params._id]];
   }
 });
 

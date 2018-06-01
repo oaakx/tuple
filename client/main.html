@@ -101,7 +101,11 @@
 
 <template name="tupleDescription">
   <div id = "tuple-append" style="margin-top: 80px;">
-    {{tuple}}
+    {{#each tuple}}
+      <p>{{title}}</p>
+      <p>By:  {{creator}}</p>
+      <p>{{description}}</p>
+    {{/each}}
   </div>
   <div id="disqus_thread"></div>
 </template>
