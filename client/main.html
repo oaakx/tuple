@@ -44,7 +44,7 @@
   <nav class = "navbar navbar-expand sticky-top navbar-dark bg-dark">
     <ul class="navbar-nav" style="width:100%">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Tuples</a>
+        <a class="nav-link" href="/">Tuples</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Chats</a>
@@ -53,9 +53,9 @@
         <a class="nav-link" href="#">Notifications</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">My Profile</a>
+        <a class="nav-link" href="/profile">My Profile</a>
       </li>
-      {{#if currentUser}}
+      <!--{{#if currentUser}}
       <li class="nav-item">
         <a class="nav-link logout" href="#">Logout</a>
       </li>
@@ -66,9 +66,25 @@
       <li class="nav-item">
         <a class="nav-link" href="{{pathFor route='login'}}">Login</a>
       </li>
-      {{/if}}
+      {{/if}}-->
     </ul>
   </nav>
+</template>
+
+<template name="profile">
+	<div style="margin-top:80px; text-align:center;">
+		{{#if currentUser}}
+			<a class="nav-link logout" href="#">Logout</a>
+		{{else}}
+			<h2>Login</h2>
+			<form class="login">
+				<p>Email: <input type="email" name="email"></p>
+				<p>Password: <input type="password" name="password"></p>
+				<p><input type="submit" value="Login"></p>
+			</form>
+			<a class="nav-link" href="{{pathFor route='register'}}">No account? Register</a>
+		{{/if}}
+	</div>
 </template>
 
 <template name="topbarwithback">
@@ -123,11 +139,3 @@
     {{> bottomnavbar}}
   </div>
 </template>
-
-
-
-
-
-
-
-

@@ -63,6 +63,11 @@ Router.route('/tupleDescription/:_id',function(){
   });
 });
 
+Router.route('/profile',function(){
+  this.render("topnavbar",{to:"header"});
+  this.render("profile");
+});
+
 Router.route('/fuuk',function(){
   this.render('topbarwithback',{to: "header"});
   this.render('fuuk');
@@ -175,4 +180,3 @@ var refUser = database.ref("users");
   //     .then(user => addUser(user))
   //     .catch(e => console.log(e.message));
   // });
-
