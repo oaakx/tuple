@@ -9,6 +9,7 @@ var config = {
   authDomain: "kaisttuple.firebaseapp.com",
   databaseURL: "https://kaisttuple.firebaseio.com",
 };
+window.disqus = new Disqus('kaist-machine-club');
 
 firebase.initializeApp(config);
 var database = firebase.database();
@@ -61,6 +62,11 @@ Router.route('/tupleDescription/:_id',function(){
       }
     });
   });
+});
+
+
+Template.tupleDescription.onRendered(function(){
+  disqus.loadComments();
 });
 
 Router.route('/profile',function(){
@@ -180,3 +186,7 @@ var refUser = database.ref("users");
   //     .then(user => addUser(user))
   //     .catch(e => console.log(e.message));
   // });
+
+
+  
+
