@@ -26,7 +26,15 @@ Router.configure({
 Router.route('/',function(){
   this.render('browsebar',{to: "header"});
   this.render('browsebody');
-  $(document).ready(function(){
+
+  
+
+/*  $(document).ready(function(){
+
+
+
+    
+
     database.ref("tuples/").once("value").then(function(snapshot){
     	let dbSnapshot = snapshot.val();
       let keyVal = Object.keys(dbSnapshot);
@@ -40,12 +48,12 @@ Router.route('/',function(){
             '<h5 class = "mb-1">'+ tuple.title + " " + '</h5>' +
             '<small class = "mb-4"> By: ' + tuple.creator + '</small>'+
             '<p class = "mt-2">' + tuple.description + '</p>' +
-            '<a class = "mt-3 btn btn-outline-info" href = "../tupleDescription/'+ i.toString() + '" style = "font-size: 12px;"> More Description </a>'
+           '<a class = "mt-3 btn btn-outline-info" href = "../tupleDescription/'+ i.toString() + '" style = "font-size: 12px;"> More Description </a>'
           '</div>';
         $("#list-group-append").append(html);
       }
     });
-  });
+  });*/
 });
 
 Router.route('/tupleDescription/:_id',function(){
@@ -53,6 +61,10 @@ Router.route('/tupleDescription/:_id',function(){
   this.render('tupleDescription');
 
   var tupleID = this.params._id;
+  //tuples = tuplesList.find().fetch();
+  //let tuple = tuples[parseInt(tupleID)];
+
+/*
   $(document).ready(function(){
     database.ref("tuples/").once("value").then(function(snapshot){
       let dbSnapshot = snapshot.val();
@@ -66,7 +78,7 @@ Router.route('/tupleDescription/:_id',function(){
         $("#tuple-append").append("<h3>" + tuple.description + "</h3>");
       }
     });
-  });
+  });*/
 });
 
 
@@ -110,28 +122,44 @@ Template.fuuk.events({
       let title = $("#title").val();
       let description = $("#description").val();
       //let type = $("input[name=inlineRadioOptions]:checked").val();
-      console.log(title.length);
-      console.log(description.length);
       if (title.length>30){
         return false;
       }
       if (description == "" || title == "") {
         return;
       }
+
+      Meteor.call('insertTuple', title, description, "Bazo", ["Bazo"], ( error )=>{
+        if ( error ){
+          console.log( error );
+        }
+      });
+/*
       firebase.database().ref('tuples/' + dateOfUpload).set({
         title: title,
         description: description,
         creator: "Bazo",
         members: ["Bazo"]//,
         //type: type
-      });
-
+      });*/
 
       return;
       //$("input[name=inlineRadioOptions]:checked").val("");
   },
 });
 
+Template.browsebody.helpers({
+  tuples(){
+    return tuplesList.find().fetch();
+  }
+});
+
+// TODO: need to fix this somehow
+Template.tupleDescription.helpers({
+  tuple(){
+    return tuplesList.find().fetch();
+  }
+});
 
 
 var config = {

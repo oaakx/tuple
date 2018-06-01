@@ -1,0 +1,1 @@
+tuplesList = new Mongo.Collection('tuples');
