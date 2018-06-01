@@ -1,8 +1,46 @@
 /* CSS declarations go here */
-.navbar {
+a.button{
+  float: right;
+  display: inline;
+  position: relative;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Courier New;
+  font-size: 14px;
+  color: #ffffff;
+  background: #31404a;
+  padding: 5px 15px 5px 15px;
+  text-decoration: none;
+  margin-top: 4px;
+  z-index: 99999;
+}
+
+.navbardiv {
     background-color: #333;
     overflow: hidden;
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+h4{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #333;
+}
+
+.topnavbar {
+  background-color: white;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+
+li.nav-item {
+  width: 25%;
+  font-size: 80%;
 }
