@@ -8,7 +8,7 @@ import './auth.html';
 
 Router.route('/register', {
 	name: 'register',
-    template: 'register'
+  template: 'register'
 });
 
 
@@ -36,15 +36,13 @@ Template.register.events({
     }
 });
 
-
-Template.bottomnavbar.events({
+Template.profile.events({
     'click .logout': function(event){
         event.preventDefault();
         Meteor.logout();
-        Router.go('login');
+        Router.go('profile');
     }
 });
-
 
 Template.login.events({
     'submit form': function(event){
@@ -66,6 +64,3 @@ Template.login.events({
 // Meteor.loginWithPassword(email, password, function(error){
 //     console.log(error);
 // });
-
-
-

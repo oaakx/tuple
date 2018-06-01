@@ -12,7 +12,7 @@
 
 <template name="browsebar">
 	<div class="topnavbar">
-    <a href="/fuuk" class="button">Create</a>
+    <a href="/fuuk" class="button" style="float:right;">Create</a>
     {{> topnavbar}}
     {{> searchbar}}
   </div>
@@ -74,14 +74,9 @@
 <template name="profile">
 	<div style="margin-top:80px; text-align:center;">
 		{{#if currentUser}}
-			<a class="nav-link logout" href="#">Logout</a>
+			<a class="button logout" href="/">Logout</a>
 		{{else}}
-			<h2>Login</h2>
-			<form class="login">
-				<p>Email: <input type="email" name="email"></p>
-				<p>Password: <input type="password" name="password"></p>
-				<p><input type="submit" value="Login"></p>
-			</form>
+			{{> login}}
 			<a class="nav-link" href="{{pathFor route='register'}}">No account? Register</a>
 		{{/if}}
 	</div>
@@ -99,6 +94,7 @@
 </template>
 
 <template name="fuuk">
+	{{#if currentUser}}
   <div class = "jumbotron jumbotron-fluid">
     <h3 class = "text-center display-4 mb-3" style = "font-size: 30px;padding-top: 30px;">
       Create a Tuple
@@ -134,7 +130,11 @@
       <button class="btn btn-outline-primary" id = "createTupleButton" role = "button" type = "submit" style="width:100%;">Create Tuple</button>
     </form>
   </div>
-
+	{{else}}
+	<div class = "jumbotron jumbotron-fluid">
+		<h4 style="text-align:center;">Fill your diesel tank before trying to create tuple</h4>
+	</div>
+	{{/if}}
   <div class="navbardiv">
     {{> bottomnavbar}}
   </div>

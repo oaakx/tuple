@@ -1,6 +1,5 @@
 /* CSS declarations go here */
 a.button{
-  float: right;
   display: inline;
   position: relative;
   -webkit-border-radius: 28;
