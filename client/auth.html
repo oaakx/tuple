@@ -18,4 +18,20 @@
           <p><input type="submit" value="Login"></p>
       </form>
     </div>
+    <div class="comment-section">
+    {{> commentsBox id=simpleID}}
+</div>
+</template>
+
+
+
+
+
+<template name="testcom">
+  <div style="text-align:center;">
+    <h2>Comments</h2>
+    <div class="comment-section">
+      {{> commentsBox id=simpleID123}}
+    </div>
+  </div>
 </template>

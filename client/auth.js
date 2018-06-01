@@ -18,6 +18,15 @@ Router.route('/login', {
 });
 
 
+
+Router.route('/testcom', {
+    name: 'testcom',
+    template: 'testcom'
+});
+
+
+
+
 Template.register.events({
     'submit form': function(event){
         event.preventDefault();
@@ -59,6 +68,16 @@ Template.login.events({
     }
 });
 
+
+
+Comments.ui.config({
+  limit: 5,
+  loadMoreCount: 10,
+  template: 'semantic-ui',
+  defaultAvatar:'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png',
+  markdown: false,
+  commentActions: [],
+})
 
 
 // Meteor.loginWithPassword(email, password, function(error){

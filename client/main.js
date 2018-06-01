@@ -14,9 +14,14 @@ window.disqus = new Disqus('kaist-machine-club');
 firebase.initializeApp(config);
 var database = firebase.database();
 
+
+
+
 Router.configure({
   layoutTemplate: 'GeneralLayout'
 });
+
+
 
 Router.route('/',function(){
   this.render('browsebar',{to: "header"});
