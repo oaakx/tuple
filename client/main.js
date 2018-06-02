@@ -4,24 +4,10 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import './header.html';
 import './main.html';
 
-var config = {
-  apiKey: "AIzaSyCvXSpqkE4psy1qrS1-F2P3xcJjzySSRt0",
-  authDomain: "kaisttuple.firebaseapp.com",
-  databaseURL: "https://kaisttuple.firebaseio.com",
-};
-
-window.disqus = new Disqus('kaist-machine-club');
-
-// firebase.initializeApp(config);
-// var database = firebase.database();
-
-
-
 
 Router.configure({
   layoutTemplate: 'GeneralLayout'
 });
-
 
 
 Router.route('/',function(){
@@ -31,11 +17,6 @@ Router.route('/',function(){
   
 
 /*  $(document).ready(function(){
-
-
-
-    
-
     database.ref("tuples/").once("value").then(function(snapshot){
     	let dbSnapshot = snapshot.val();
       let keyVal = Object.keys(dbSnapshot);
@@ -62,6 +43,7 @@ Router.route('/tupleDescription/:_id',function(){
   this.render('tupleDescription');
 
   var tupleID = this.params._id;
+
   //tuples = tuplesList.find().fetch();
   //let tuple = tuples[parseInt(tupleID)];
 
@@ -152,14 +134,25 @@ Template.fuuk.events({
 
 Template.browsebody.helpers({
   tuples(){
-    return tuplesList.find().fetch();
+    tuples = tuplesList.find().fetch();
+    for (var i =0; i<tuples.length; i++){
+      tuples[i].class = "list-group-item list-group-secondary "+tuples[i].title.toLowerCase();
+      tuples[i].href = "../tupleDescription/" + tuples[i]._id;
+    }
+    return tuples;
   }
 });
 
 // TODO: need to fix this somehow
 Template.tupleDescription.helpers({
   tuple(){
-    return tuplesList.find().fetch();
+    tuples = tuplesList.find().fetch()
+    for (var i=0;i<tuples.length;i++){
+      if (tuples[i]._id == Router.current().params._id){
+        return [tuples[i]]
+      }
+    }
+    
   }
 });
 
