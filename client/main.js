@@ -3,21 +3,12 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './header.html';
 import './main.html';
-/*
-var config = {
-  apiKey: "AIzaSyCvXSpqkE4psy1qrS1-F2P3xcJjzySSRt0",
-  authDomain: "kaisttuple.firebaseapp.com",
-  databaseURL: "https://kaisttuple.firebaseio.com",
-};*/
-window.disqus = new Disqus('kaist-machine-club');
-/*
-firebase.initializeApp(config);
-var database = firebase.database();*/
 
 
 Router.configure({
   layoutTemplate: 'GeneralLayout'
 });
+
 
 
 Router.route('/',function(){
@@ -27,8 +18,13 @@ Router.route('/',function(){
   
 
 /*  $(document).ready(function(){
+
+
+
+    
+
     database.ref("tuples/").once("value").then(function(snapshot){
-    	let dbSnapshot = snapshot.val();
+      let dbSnapshot = snapshot.val();
       let keyVal = Object.keys(dbSnapshot);
       for ( var i = 0; i < keyVal.length; i++) {
         let tuple = dbSnapshot[keyVal[i]];
@@ -53,8 +49,6 @@ Router.route('/tupleDescription/:_id',function(){
   this.render('tupleDescription');
 
   var tupleID = this.params._id;
-  console.log(tupleID);
-
   //tuples = tuplesList.find().fetch();
   //let tuple = tuples[parseInt(tupleID)];
 
@@ -76,9 +70,19 @@ Router.route('/tupleDescription/:_id',function(){
 });
 
 
-Template.tupleDescription.onRendered(function(){
-  disqus.loadComments();
+
+Template.tupleDescription.events({
+
+  'submit #check_id': function(event, template){
+    event.preventDefault();
+
+    var idd = template;
+    console.log(idd);
+  }
+
 });
+
+
 
 Router.route('/profile',function(){
   this.render("topnavbar",{to:"header"});
@@ -123,7 +127,9 @@ Template.fuuk.events({
         return;
       }
 
-      Meteor.call('insertTuple', title, description, "Bazo", ["Bazo"], ( error )=>{
+      var creator = Meteor.user().emails[0]["address"];
+
+      Meteor.call('insertTuple', title, description, creator, [creator], ( error )=>{
         if ( error ){
           console.log( error );
         }
@@ -144,42 +150,34 @@ Template.fuuk.events({
 
 Template.browsebody.helpers({
   tuples(){
-    tuples = tuplesList.find().fetch();
-    for (var i =0; i<tuples.length; i++){
-      tuples[i].class = "list-group-item list-group-secondary "+tuples[i].title.toLowerCase();
-      tuples[i].href = "../tupleDescription/" + tuples[i]._id;
-    }
-    return tuples;
+    return tuplesList.find().fetch();
   }
 });
+
+
+
 
 // TODO: need to fix this somehow
 Template.tupleDescription.helpers({
   tuple(){
-    tuples = tuplesList.find().fetch()
-    for (var i=0;i<tuples.length;i++){
-      if (tuples[i]._id == Router.current().params._id){
-        return [tuples[i]]
-      }
-    }
-    
-  }
+    return tuplesList.find().fetch();
+  },
+
+  'tuple_title': function(){
+      var url = location.href;
+      var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
+      return tuplesList.find({_id: tuple_id}).fetch()[0].title;
+  },
+  'tuple_description': function(){
+      var url = location.href;
+      var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
+      return tuplesList.find({_id: tuple_id}).fetch()[0].description;
+  },
+
+  
+
 });
 
-
-var config = {
-apiKey: "AIzaSyCvXSpqkE4psy1qrS1-F2P3xcJjzySSRt0",
-authDomain: "kaisttuple.firebaseapp.com",
-databaseURL: "https://kaisttuple.firebaseio.com",
-projectId: "kaisttuple",
-storageBucket: "kaisttuple.appspot.com",
-messagingSenderId: "623663672969"
-};
-firebase.initializeApp(config);
-
-
-var database = firebase.database();
-var refUser = database.ref("users");
 
   //TODO: messages checking for validity of e-mail address
   //      length of pass should be > 6
@@ -225,6 +223,75 @@ var refUser = database.ref("users");
   //     .catch(e => console.log(e.message));
   // });
 
+Template.testcom.helpers({
+    'tup_comment': function(){
+        var url = location.href;
+        var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
+        return Comments.find({tuple_id: tuple_id}).fetch();
+    }
+});
 
   
+
+
+
+
+
+Template.testcom.events({
+  'click button':function(event){
+      event.preventDefault();
+      if (!Meteor.user()) {
+        alert("You need to be logged in");
+        Router.go("login");
+        return false;
+      }
+      var madeBy = Meteor.user().emails[0]["address"];
+      var comment = document.getElementById('comment_text').value;
+      var url = location.href;
+      var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
+      var created_time = new Date();
+      
+      var day = created_time.getDate();
+      if (day < 10){
+        day = "0" + day;
+      }
+      var month = created_time.getMonth();
+      if (month < 10){
+        month = "0" + month;
+      }
+
+      var year = created_time.getFullYear().toString().substring(2);
+
+      var hour = created_time.getHours();
+      if (hour < 10){
+        hour = "0" + hour;
+      }
+
+      var minutes = created_time.getMinutes();
+      if (minutes < 10){
+        minutes = "0" + minutes;
+      }
+
+
+      var time =  hour + ":"+ minutes;
+
+      var disp_time = day+"/"+month+"/"+year+ " " + time;
+    
+      if (comment == "") {
+        alert("You need to be logged in");
+        return false;
+      } else {
+        Comments.insert({
+          comment: comment,
+          createdAt: disp_time,
+          madeBy: madeBy,
+          tuple_id: tuple_id,
+        });
+        document.getElementById('comment_text').value='';
+        return false;
+      }
+    }
+});
+
+
 
