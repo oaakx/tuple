@@ -1,29 +1,29 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import './auth.html';
+import { Mongo } from 'meteor/mongo'
+
+//Comments functionality here
+
+
+//
+
+
 
 
 
 //REGISTER AND LOGIN FUNCTIONALITY HERE
 
 Router.route('/register', {
-	name: 'register',
+  name: 'register',
   template: 'register'
 });
 
 
 Router.route('/login', {
-	name: 'login',
-	template: 'login'
+  name: 'login',
+  template: 'login'
 });
-
-
-
-Router.route('/testcom', {
-    name: 'testcom',
-    template: 'testcom'
-});
-
 
 
 
@@ -36,11 +36,11 @@ Template.register.events({
             email: email,
             password: password
         }, function(error) {
-        	if(error) {
-        		console.log(error.reason);
-        	} else {
-        		Router.go("/"); //Need to enable going to the page where login_signup was triggered
-        	}
+          if(error) {
+            console.log(error.reason);
+          } else {
+            Router.go("/"); //Need to enable going to the page where login_signup was triggered
+          }
         });
     }
 });
@@ -58,28 +58,12 @@ Template.login.events({
         event.preventDefault();
         var email = $('[name=email]').val();
         var password = $('[name=password]').val();
-		Meteor.loginWithPassword(email, password, function(error){
-		    if(error){
-		        console.log(error.reason);
-		    } else {
-		        Router.go("/");
-		    }
-		});
+    Meteor.loginWithPassword(email, password, function(error){
+        if(error){
+            console.log(error.reason);
+        } else {
+            Router.go("/");
+        }
+    });
     }
 });
-
-
-
-Comments.ui.config({
-  limit: 5,
-  loadMoreCount: 10,
-  template: 'bootstrap',
-  defaultAvatar:'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png',
-  markdown: false,
-  commentActions: [],
-})
-
-
-// Meteor.loginWithPassword(email, password, function(error){
-//     console.log(error);
-// });

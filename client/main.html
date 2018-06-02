@@ -1,17 +1,17 @@
 <template name="GeneralLayout">
-	<header>
-		{{> yield "header"}}
-	</header>
-	<body>
-		{{> yield}}
-	</body>
-	<footer class="navbardiv">
-		{{> bottomnavbar}}
-	</footer>
+  <header>
+    {{> yield "header"}}
+  </header>
+  <body>
+    {{> yield}}
+  </body>
+  <footer class="navbardiv">
+    {{> bottomnavbar}}
+  </footer>
 </template>
 
 <template name="browsebar">
-	<div class="topnavbar">
+  <div class="topnavbar">
     <a href="/fuuk" class="button" style="float:right;">Create</a>
     {{> topnavbar}}
     {{> searchbar}}
@@ -19,13 +19,13 @@
 </template>
 
 <template name="browsebody">
-	<div id = "list-group-append" style="margin-top: 80px;">
+  <div id = "list-group-append" style="margin-top: 80px;">
     {{#each tuples}}
-      <div class = {{class}}> 
+      <div class = "list-group-item list-group-secondary tuple.title.toLowerCase()"> 
         <h5 class = "mb-1"> {{title}} </h5> 
         <small class = "mb-4"> By:  {{creator}} </small>
         <p class = "mt-2">{{description}}</p>
-        <a class = "mt-3 btn btn-outline-info" href = {{href}} style = "font-size: 12px;"> More Description </a>
+        <a class = "mt-3 btn btn-outline-info" onclick="location.href='../tupleDescription/' + '{{_id}}'" style = "font-size: 12px;"> More Description </a>
       </div>
     {{/each}}
      
@@ -33,9 +33,9 @@
 </template>
 
 <template name="topnavbar">
-	<div class="topnavbar">
-  	<h4>KAIST TUPLE</h4>
-	</div>
+  <div class="topnavbar">
+    <h4>KAIST TUPLE</h4>
+  </div>
 </template>
 
 <template name="searchbar">
@@ -82,14 +82,13 @@
 </template>
 
 <template name="profile">
-	<div style="margin-top:80px; text-align:center;">
-		{{#if currentUser}}
-			<a class="button logout" href="/">Logout</a>
-		{{else}}
-			{{> login}}
-			<a class="nav-link" href="{{pathFor route='register'}}">No account? Register</a>
-		{{/if}}
-	</div>
+  <div style="margin-top:80px; text-align:center;">
+    {{#if currentUser}}
+      <a class="button logout" href="/">Logout</a>
+    {{else}}
+      {{> login}}
+    {{/if}}
+  </div>
 </template>
 
 <template name="topbarwithback">
@@ -100,19 +99,24 @@
 </template>
 
 <template name="tupleDescription">
-  <div id = "tuple-append" style="margin-top: 80px;">
-    {{#each tuple}}
-      <p>{{title}}</p>
-      <p>By:  {{creator}}</p>
-      <p>{{description}}</p>
-    {{/each}}
+  <div class="text-center">
+    <div style="margin-top: 60px">
+      <h3>{{tuple_title}}</h3>
+    </div>
+    <div class="description">
+      <h5>{{tuple_description}}</h5>
+    </div> 
   </div>
-  <div id="disqus_thread"></div>
-  {{> commentsBox id=simpleID123}}
+  
+  
+
+  <div class="comment_box_section">
+    {{>testcom}}
+  </div>
 </template>
 
 <template name="fuuk">
-	{{#if currentUser}}
+  {{#if currentUser}}
   <div class = "jumbotron jumbotron-fluid">
     <h3 class = "text-center display-4 mb-3" style = "font-size: 30px;padding-top: 30px;">
       Create a Tuple
@@ -148,12 +152,47 @@
       <button class="btn btn-outline-primary" id = "createTupleButton" role = "button" type = "submit" style="width:100%;">Create Tuple</button>
     </form>
   </div>
-	{{else}}
-	<div class = "jumbotron jumbotron-fluid">
-		<h4 style="text-align:center;">Fill your diesel tank before trying to create tuple</h4>
-	</div>
-	{{/if}}
+  {{else}}
+  <div class = "jumbotron jumbotron-fluid">
+    <h4 style="text-align:center;">Fill your diesel tank before trying to create tuple</h4>
+  </div>
+  {{/if}}
   <div class="navbardiv">
     {{> bottomnavbar}}
   </div>
 </template>
+
+
+
+
+
+
+
+<template name="testcom">
+  <div style="text-align:center;">
+    <h4>Comments</h4>
+    {{#each tup_comment}}
+      <div class="dialogbox">
+        <div class="commentbody">
+          <span class="tip tip-left"></span>
+          <div class="message">
+            {{comment}}
+            <br>
+            <p style=" position: absolute; right: 5px; font-size: 10px">{{createdAt}} by {{madeBy}}</p>
+          </div>
+
+        </div>
+
+      </div>    
+    {{/each}}
+    <form class="add-Comment">
+    <textarea rows="3" style="border-width: 1px; border-color: #4c4cff; width: 80%;" placeholder="Your comment... " id="comment_text"></textarea>
+    <button class="btn btn-outline-primary" id="addCommentButton" role = "button" type="submit" style="width:80%;">Add Comment</button>
+    </form> 
+  </div>
+</template>
+
+
+
+
+
