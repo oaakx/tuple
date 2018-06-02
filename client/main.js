@@ -53,6 +53,7 @@ Router.route('/tupleDescription/:_id',function(){
   this.render('tupleDescription');
 
   var tupleID = this.params._id;
+  console.log(tupleID);
 
   //tuples = tuplesList.find().fetch();
   //let tuple = tuples[parseInt(tupleID)];
