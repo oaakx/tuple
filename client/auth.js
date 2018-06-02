@@ -73,7 +73,7 @@ Template.login.events({
 Comments.ui.config({
   limit: 5,
   loadMoreCount: 10,
-  template: 'semantic-ui',
+  template: 'bootstrap',
   defaultAvatar:'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png',
   markdown: false,
   commentActions: [],

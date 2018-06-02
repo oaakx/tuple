@@ -9,10 +9,11 @@ var config = {
   authDomain: "kaisttuple.firebaseapp.com",
   databaseURL: "https://kaisttuple.firebaseio.com",
 };
+
 window.disqus = new Disqus('kaist-machine-club');
 
-firebase.initializeApp(config);
-var database = firebase.database();
+// firebase.initializeApp(config);
+// var database = firebase.database();
 
 
 
@@ -84,6 +85,7 @@ Router.route('/tupleDescription/:_id',function(){
 
 Template.tupleDescription.onRendered(function(){
   disqus.loadComments();
+  // {{> commentsBox id=idsimple}}
 });
 
 Router.route('/profile',function(){
@@ -170,11 +172,11 @@ projectId: "kaisttuple",
 storageBucket: "kaisttuple.appspot.com",
 messagingSenderId: "623663672969"
 };
-firebase.initializeApp(config);
+// firebase.initializeApp(config);
 
 
-var database = firebase.database();
-var refUser = database.ref("users");
+// var database = firebase.database();
+// var refUser = database.ref("users");
 
   //TODO: messages checking for validity of e-mail address
   //      length of pass should be > 6
