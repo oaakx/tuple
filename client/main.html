@@ -21,14 +21,13 @@
 <template name="browsebody">
   <div id = "list-group-append" style="margin-top: 80px;">
     {{#each tuples}}
-      <div class = "list-group-item list-group-secondary tuple.title.toLowerCase()"> 
-        <h5 class = "mb-1"> {{title}} </h5> 
+      <div class = "list-group-item list-group-secondary tuple.title.toLowerCase()">
+        <h5 class = "mb-1"> {{title}} </h5>
         <small class = "mb-4"> By:  {{creator}} </small>
         <p class = "mt-2">{{description}}</p>
         <a class = "mt-3 btn btn-outline-info" onclick="location.href='../tupleDescription/' + '{{_id}}'" style = "font-size: 12px;"> More Description </a>
       </div>
     {{/each}}
-     
   </div>
 </template>
 
@@ -60,7 +59,7 @@
         <a class="nav-link" href="#">Chats</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Notifications</a>
+        <a class="nav-link" href="/notification">Notifications</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/profile">My Profile</a>
@@ -105,10 +104,10 @@
     </div>
     <div class="description">
       <h5>{{tuple_description}}</h5>
-    </div> 
+    </div>
   </div>
-  
-  
+
+
 
   <div class="comment_box_section">
     {{>testcom}}
@@ -162,11 +161,17 @@
   </div>
 </template>
 
-
-
-
-
-
+<template name="notification">
+  <div class="container" style="margin-top:80px;">
+    {{#each notifs}}
+      <div>
+        <h5 class = "mb-1"> {{title}} </h5>
+        <p class = "mt-2">{{description}}</p>
+      </div>
+    {{/each}}
+    <button class="btn btn-outline-primary" role = "button" type="submit" style="width:80%;">Get Notif</button>
+  </div>
+</template>
 
 <template name="testcom">
   <div style="text-align:center;">
@@ -180,19 +185,12 @@
             <br>
             <p style=" position: absolute; right: 5px; font-size: 10px">{{createdAt}} by {{madeBy}}</p>
           </div>
-
         </div>
-
-      </div>    
+      </div>
     {{/each}}
     <form class="add-Comment">
     <textarea rows="3" style="border-width: 1px; border-color: #4c4cff; width: 80%;" placeholder="Your comment... " id="comment_text"></textarea>
     <button class="btn btn-outline-primary" id="addCommentButton" role = "button" type="submit" style="width:80%;">Add Comment</button>
-    </form> 
+    </form>
   </div>
 </template>
-
-
-
-
-

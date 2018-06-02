@@ -15,13 +15,13 @@ Router.route('/',function(){
   this.render('browsebar',{to: "header"});
   this.render('browsebody');
 
-  
+
 
 /*  $(document).ready(function(){
 
 
 
-    
+
 
     database.ref("tuples/").once("value").then(function(snapshot){
       let dbSnapshot = snapshot.val();
@@ -173,9 +173,6 @@ Template.tupleDescription.helpers({
       var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
       return tuplesList.find({_id: tuple_id}).fetch()[0].description;
   },
-
-  
-
 });
 
 
@@ -231,12 +228,6 @@ Template.testcom.helpers({
     }
 });
 
-  
-
-
-
-
-
 Template.testcom.events({
   'click button':function(event){
       event.preventDefault();
@@ -250,7 +241,7 @@ Template.testcom.events({
       var url = location.href;
       var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
       var created_time = new Date();
-      
+
       var day = created_time.getDate();
       if (day < 10){
         day = "0" + day;
@@ -276,7 +267,7 @@ Template.testcom.events({
       var time =  hour + ":"+ minutes;
 
       var disp_time = day+"/"+month+"/"+year+ " " + time;
-    
+
       if (comment == "") {
         alert("You need to be logged in");
         return false;
@@ -293,5 +284,42 @@ Template.testcom.events({
     }
 });
 
+Router.route('/notification',function(){
+  this.render('topnavbar',{to: "header"});
+  this.render('notification');
 
+  var userID = this.params._id;
+});
 
+Template.notification.helpers({
+  'notifs': function(){
+      var url = location.href;
+      if (!Meteor.user()) {
+        alert("You need to be logged in");
+        Router.go("login");
+        return false;
+      }
+      var user = Meteor.user().emails[0]["address"];
+      return Notifications.find({user: user}).fetch();
+  }
+});
+
+Template.notification.events({
+  'click button':function(event){
+    event.preventDefault();
+    if (!Meteor.user()) {
+      alert("You need to be logged in");
+      Router.go("login");
+      return false;
+    }
+    var user = Meteor.user().emails[0]["address"];
+    Notifications.insert({
+      title: "Sample Title",
+      description: "You received a sample notification",
+      type: "sample",
+      read: false,
+      user: user
+    });
+    return false;
+  }
+});
