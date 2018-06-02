@@ -146,7 +146,7 @@ Template.browsebody.helpers({
     tuples = tuplesList.find().fetch();
     for (var i =0; i<tuples.length; i++){
       tuples[i].class = "list-group-item list-group-secondary "+tuples[i].title.toLowerCase();
-      tuples[i].href = "../tupleDescription/" + i.toString();
+      tuples[i].href = "../tupleDescription/" + tuples[i]._id;
     }
     return tuples;
   }
@@ -156,7 +156,12 @@ Template.browsebody.helpers({
 Template.tupleDescription.helpers({
   tuple(){
     tuples = tuplesList.find().fetch()
-    return [tuples[Router.current().params._id]];
+    for (var i=0;i<tuples.length;i++){
+      if (tuples[i]._id == Router.current().params._id){
+        return [tuples[i]]
+      }
+    }
+    
   }
 });
 
