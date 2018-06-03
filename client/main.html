@@ -105,9 +105,10 @@
     <div class="description">
       <h5>{{tuple_description}}</h5>
     </div>
+    {{#if currentUser}}
+      <button class="btn btn-outline-primary" role = "button" type="submit" style="width:80%;">Join Tuple</button>
+    {{/if}}
   </div>
-
-
 
   <div class="comment_box_section">
     {{>testcom}}
@@ -162,7 +163,7 @@
 </template>
 
 <template name="notification">
-  <div class="container" style="margin-top:80px;">
+  <div style="margin-top:80px; text-align:center;">
     {{#each notifs}}
       <div>
         <h5 class = "mb-1"> {{title}} </h5>
