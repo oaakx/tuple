@@ -14,35 +14,6 @@ Router.route('/',function(){
   this.render('browsebody');
 });
 
-Router.route('/tupleDescription/:_id',function(){
-  this.render('topbarwithback',{to: "header"});
-  this.render('tupleDescription');
-
-  var tupleID = this.params._id;
-});
-
-Template.tupleDescription.events({
-
-  'submit #check_id': function(event, template){
-    event.preventDefault();
-
-    var idd = template;
-    console.log(idd);
-  }
-
-});
-
-Router.route('/profile',function(){
-  this.render("topnavbar",{to:"header"});
-  this.render("profile");
-});
-
-Template.profile.helpers({
-  'username': function(){
-    return Meteor.user().emails[0]["address"];
-  }
-});
-
 Router.route('/createTuple',function(){
   this.render('topbarwithback',{to: "header"});
   this.render('createTuple');
@@ -64,6 +35,7 @@ Template.searchbar.events({
     });
   },
 });
+
 
 Template.createTuple.events({
   'click button'(event, instance) {
