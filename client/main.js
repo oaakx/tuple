@@ -14,34 +14,6 @@ Router.configure({
 Router.route('/',function(){
   this.render('browsebar',{to: "header"});
   this.render('browsebody');
-
-
-
-/*  $(document).ready(function(){
-
-
-
-
-
-    database.ref("tuples/").once("value").then(function(snapshot){
-      let dbSnapshot = snapshot.val();
-      let keyVal = Object.keys(dbSnapshot);
-      for ( var i = 0; i < keyVal.length; i++) {
-        let tuple = dbSnapshot[keyVal[i]];
-        if (!tuple.title){
-          return;
-        }
-        let html =
-          '<div class = "list-group-item list-group-secondary ' + tuple.title.toLowerCase() + '">' +
-            '<h5 class = "mb-1">'+ tuple.title + " " + '</h5>' +
-            '<small class = "mb-4"> By: ' + tuple.creator + '</small>'+
-            '<p class = "mt-2">' + tuple.description + '</p>' +
-           '<a class = "mt-3 btn btn-outline-info" href = "../tupleDescription/'+ i.toString() + '" style = "font-size: 12px;"> More Description </a>'
-          '</div>';
-        $("#list-group-append").append(html);
-      }
-    });
-  });*/
 });
 
 Router.route('/tupleDescription/:_id',function(){
@@ -49,24 +21,7 @@ Router.route('/tupleDescription/:_id',function(){
   this.render('tupleDescription');
 
   var tupleID = this.params._id;
-  //tuples = tuplesList.find().fetch();
-  //let tuple = tuples[parseInt(tupleID)];
 
-/*
-  $(document).ready(function(){
-    database.ref("tuples/").once("value").then(function(snapshot){
-      let dbSnapshot = snapshot.val();
-      let keyVal = Object.keys(dbSnapshot);
-      let tuple = dbSnapshot[keyVal[parseInt(tupleID)]];
-      if (!tuple.title){
-        return;
-      }else{
-        $("#tuple-append").append("<h1>" + tuple.title + "</h1>");
-        $("#tuple-append").append("<h2>" + tuple.creator + "</h2>");
-        $("#tuple-append").append("<h3>" + tuple.description + "</h3>");
-      }
-    });
-  });*/
 });
 
 
@@ -125,7 +80,6 @@ Template.fuuk.events({
       let dateOfUpload = (todayDate.getMonth() + 1).toString().concat(bar, (todayDate.getDate()).toString(), bar, (todayDate.getFullYear()).toString(), bar, time.toString());
       let title = $("#title").val();
       let description = $("#description").val();
-      //let type = $("input[name=inlineRadioOptions]:checked").val();
       if (title.length>30){
         return false;
       }
@@ -140,17 +94,8 @@ Template.fuuk.events({
           console.log( error );
         }
       });
-/*
-      firebase.database().ref('tuples/' + dateOfUpload).set({
-        title: title,
-        description: description,
-        creator: "Bazo",
-        members: ["Bazo"]//,
-        //type: type
-      });*/
 
       return;
-      //$("input[name=inlineRadioOptions]:checked").val("");
   },
 });
 
@@ -332,6 +277,8 @@ Template.notification.helpers({
         return false;
       }
       var user = Meteor.user().emails[0]["address"];
+      var notifications = Notifications.find({user: user}).fetch();
+      console.log(notifications);
       return Notifications.find({user: user}).fetch();
   }
 });
