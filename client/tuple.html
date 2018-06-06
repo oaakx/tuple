@@ -12,11 +12,11 @@
   </div>
 
   <div class="comment_box_section">
-    {{>testcom}}
+    {{>commentbox}}
   </div>
 </template>
 
-<template name="fuuk">
+<template name="createTuple">
   {{#if currentUser}}
   <div class = "jumbotron jumbotron-fluid">
     <h3 class = "text-center display-4 mb-3" style = "font-size: 30px;padding-top: 30px;">
@@ -33,23 +33,6 @@
         <textarea type="textarea" class="form-control" id="description" placeholder="Studio Session" rows = "5" required maxlength="500"> </textarea>
         <small id="emailHelp" class="form-text text-muted text-left">Description about the Tuple</small>
       </div>
-      <!--
-      <div class="form-group">
-         <label for="event-hash">Tuple type</label>
-         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="#Study">
-            <span class="form-check-label" for="inlineRadio1">#Study</span>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="#Club">
-            <span class="form-check-label" for="inlineRadio2">#Club</span>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="#Fun">
-            <span class="form-check-label" for="inlineRadio3">#Fun</span>
-          </div>
-        <small id="emailHelp" class="form-text text-muted text-left">Type of Tuple</small>
-      </div>-->
       <button class="btn btn-outline-primary" id = "createTupleButton" role = "button" type = "submit" style="width:100%;">Create Tuple</button>
     </form>
   </div>
@@ -63,7 +46,7 @@
   </div>
 </template>
 
-<template name="testcom">
+<template name="commentbox">
   <div style="text-align:center;">
     <h4>Comments</h4>
     {{#each tup_comment}}

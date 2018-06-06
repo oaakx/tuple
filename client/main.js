@@ -9,8 +9,6 @@ Router.configure({
   layoutTemplate: 'GeneralLayout'
 });
 
-
-
 Router.route('/',function(){
   this.render('browsebar',{to: "header"});
   this.render('browsebody');
@@ -21,10 +19,7 @@ Router.route('/tupleDescription/:_id',function(){
   this.render('tupleDescription');
 
   var tupleID = this.params._id;
-
 });
-
-
 
 Template.tupleDescription.events({
 
@@ -37,8 +32,6 @@ Template.tupleDescription.events({
 
 });
 
-
-
 Router.route('/profile',function(){
   this.render("topnavbar",{to:"header"});
   this.render("profile");
@@ -50,9 +43,9 @@ Template.profile.helpers({
   }
 });
 
-Router.route('/fuuk',function(){
+Router.route('/createTuple',function(){
   this.render('topbarwithback',{to: "header"});
-  this.render('fuuk');
+  this.render('createTuple');
 });
 
 Template.searchbar.events({
@@ -72,7 +65,7 @@ Template.searchbar.events({
   },
 });
 
-Template.fuuk.events({
+Template.createTuple.events({
   'click button'(event, instance) {
       let todayDate = new Date();
       var time = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
@@ -104,8 +97,6 @@ Template.browsebody.helpers({
     return tuplesList.find().fetch();
   }
 });
-
-
 
 
 // TODO: need to fix this somehow
@@ -302,3 +293,6 @@ Template.notification.events({
     return false;
   }
 });
+
+
+
