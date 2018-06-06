@@ -6,6 +6,10 @@
     <div class="description">
       <h5>{{tuple_description}}</h5>
     </div>
+    {{#if main_button}}
+      <button class="btn btn-outline-primary" role = "button" type="submit" style="width:80%;" disabled="true">You're already a member</button>
+      {{else}}
+
     {{#if currentUser}}
       {{#if button}}
       <button class="btn btn-outline-primary" role = "button" type="submit" style="width:80%;" disabled="true">Request Sent</button>
@@ -13,6 +17,8 @@
       <button class="btn btn-outline-primary" role = "button" type="submit" style="width:80%;">Join Tuple</button>
       {{/if}}     
     {{/if}}
+
+      {{/if}}  
   </div>
 
   <div class="comment_box_section">

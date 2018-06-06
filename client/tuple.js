@@ -36,6 +36,20 @@ Template.tupleDescription.helpers({
       }
       return ;
   },
+  'main_button': function(){ 
+      var user = Meteor.user().emails[0]["address"];
+
+      var url = location.href;
+      var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
+      var members = tuplesList.find({_id: tuple_id}).fetch()[0].members;
+
+      for (var i =0; i<members.length; i++){
+        if (members[i]==user){
+          return true;
+        }
+      }
+      return ;
+  },
 });
 
 
