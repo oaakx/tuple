@@ -89,6 +89,12 @@ Router.route('/profile',function(){
   this.render("profile");
 });
 
+Template.profile.helpers({
+  'username': function(){
+    return Meteor.user().emails[0]["address"];
+  }
+});
+
 Router.route('/fuuk',function(){
   this.render('topbarwithback',{to: "header"});
   this.render('fuuk');
