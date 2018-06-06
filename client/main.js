@@ -14,35 +14,6 @@ Router.route('/',function(){
   this.render('browsebody');
 });
 
-Router.route('/tupleDescription/:_id',function(){
-  this.render('topbarwithback',{to: "header"});
-  this.render('tupleDescription');
-
-  var tupleID = this.params._id;
-});
-
-Template.tupleDescription.events({
-
-  'submit #check_id': function(event, template){
-    event.preventDefault();
-
-    var idd = template;
-    console.log(idd);
-  }
-
-});
-
-Router.route('/profile',function(){
-  this.render("topnavbar",{to:"header"});
-  this.render("profile");
-});
-
-Template.profile.helpers({
-  'username': function(){
-    return Meteor.user().emails[0]["address"];
-  }
-});
-
 Router.route('/createTuple',function(){
   this.render('topbarwithback',{to: "header"});
   this.render('createTuple');
@@ -62,32 +33,6 @@ Template.searchbar.events({
         $(this).show();
       }
     });
-  },
-});
-
-Template.createTuple.events({
-  'click button'(event, instance) {
-      let todayDate = new Date();
-      var time = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
-      let bar = "-";
-      let dateOfUpload = (todayDate.getMonth() + 1).toString().concat(bar, (todayDate.getDate()).toString(), bar, (todayDate.getFullYear()).toString(), bar, time.toString());
-      let title = $("#title").val();
-      let description = $("#description").val();
-      if (title.length>30){
-        return false;
-      }
-      if (description == "" || title == "") {
-        return;
-      }
-
-      var creator = Meteor.user().emails[0]["address"];
-
-      Meteor.call('insertTuple', title, description, creator, [creator], ( error )=>{
-        if ( error ){
-          console.log( error );
-        }
-      });
-      return;
   },
 });
 

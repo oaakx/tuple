@@ -1,3 +1,10 @@
+Router.route('/tupleDescription/:_id',function(){
+  this.render('topbarwithback',{to: "header"});
+  this.render('tupleDescription');
+
+  var tupleID = this.params._id;
+});
+
 Template.tupleDescription.helpers({
   tuple(){
     return tuplesList.find().fetch();
@@ -39,6 +46,41 @@ Template.tupleDescription.events({
     });
     return false;
   }
+});
+
+Template.tupleDescription.events({
+  'submit #check_id': function(event, template){
+    event.preventDefault();
+
+    var idd = template;
+    console.log(idd);
+  }
+});
+
+Template.createTuple.events({
+  'click button'(event, instance) {
+      let todayDate = new Date();
+      var time = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
+      let bar = "-";
+      let dateOfUpload = (todayDate.getMonth() + 1).toString().concat(bar, (todayDate.getDate()).toString(), bar, (todayDate.getFullYear()).toString(), bar, time.toString());
+      let title = $("#title").val();
+      let description = $("#description").val();
+      if (title.length>30){
+        return false;
+      }
+      if (description == "" || title == "") {
+        return;
+      }
+
+      var creator = Meteor.user().emails[0]["address"];
+
+      Meteor.call('insertTuple', title, description, creator, [creator], ( error )=>{
+        if ( error ){
+          console.log( error );
+        }
+      });
+      return;
+  },
 });
 
 Template.commentbox.helpers({

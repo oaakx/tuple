@@ -3,29 +3,15 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import './auth.html';
 import { Mongo } from 'meteor/mongo'
 
-//Comments functionality here
-
-
-//
-
-
-
-
-
-//REGISTER AND LOGIN FUNCTIONALITY HERE
-
-Router.route('/register', {
-  name: 'register',
-  template: 'register'
+Router.route('/register',function(){
+  this.render("topnavbar",{to:"header"});
+  this.render("register");
 });
 
-
-Router.route('/login', {
-  name: 'login',
-  template: 'login'
+Router.route('/login',function(){
+  this.render("topnavbar",{to:"header"});
+  this.render("login");
 });
-
-
 
 Template.register.events({
     'submit form': function(event){
