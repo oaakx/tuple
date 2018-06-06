@@ -1,0 +1,23 @@
+<template name="profile">
+  <div style="margin-top:80px; text-align:center;">
+    {{#if currentUser}}
+      {{username}}
+      <nav class = "navbar navbar-expand sticky-top">
+        <ul class="navbar-nav" style="width:100%">
+          <li class="nav-item active" style="width:33%">
+            <a class="nav-link" href="#">My Tuples</a>
+          </li>
+          <li class="nav-item" style="width:33%">
+            <a class="nav-link" href="#">My Friends</a>
+          </li>
+          <li class="nav-item" style="width:33%">
+            <a class="nav-link" href="#">Settings</a>
+          </li>
+        </ul>
+      </nav>
+      <a class="button logout" href="/">Logout</a>
+    {{else}}
+      {{> login}}
+    {{/if}}
+  </div>
+</template>
