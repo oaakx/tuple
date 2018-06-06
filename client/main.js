@@ -99,51 +99,6 @@ Template.browsebody.helpers({
 });
 
 
-// TODO: need to fix this somehow
-Template.tupleDescription.helpers({
-  tuple(){
-    return tuplesList.find().fetch();
-  },
-
-  'tuple_title': function(){
-      var url = location.href;
-      var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
-      return tuplesList.find({_id: tuple_id}).fetch()[0].title;
-  },
-  'tuple_description': function(){
-      var url = location.href;
-      var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
-      return tuplesList.find({_id: tuple_id}).fetch()[0].description;
-  },
-});
-
-
-Template.tupleDescription.events({
-  'click button':function(event){
-    event.preventDefault();
-    if (!Meteor.user()) {
-      alert("You need to be logged in");
-      Router.go("login");
-      return false;
-    }
-    var user = Meteor.user().emails[0]["address"];
-    var url = location.href;
-    var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
-    var creator = tuplesList.find({_id: tuple_id}).fetch()[0].creator;
-    var title = tuplesList.find({_id: tuple_id}).fetch()[0].title;
-
-    Notifications.insert({
-      title: title,
-      description: user + " wants to join your tuple.",
-      type: "tuple join request",
-      read: false,
-      user: creator
-    });
-    return false;
-  }
-});
-
-
   //TODO: messages checking for validity of e-mail address
   //      length of pass should be > 6
 
@@ -252,47 +207,6 @@ Template.testcom.events({
     }
 });
 
-Router.route('/notification',function(){
-  this.render('topnavbar',{to: "header"});
-  this.render('notification');
-
-  var userID = this.params._id;
-});
-
-Template.notification.helpers({
-  'notifs': function(){
-      var url = location.href;
-      if (!Meteor.user()) {
-        alert("You need to be logged in");
-        Router.go("login");
-        return false;
-      }
-      var user = Meteor.user().emails[0]["address"];
-      var notifications = Notifications.find({user: user}).fetch();
-      console.log(notifications);
-      return Notifications.find({user: user}).fetch();
-  }
-});
-
-Template.notification.events({
-  'click button':function(event){
-    event.preventDefault();
-    if (!Meteor.user()) {
-      alert("You need to be logged in");
-      Router.go("login");
-      return false;
-    }
-    var user = Meteor.user().emails[0]["address"];
-    Notifications.insert({
-      title: "Sample Title",
-      description: "You received a sample notification",
-      type: "sample",
-      read: false,
-      user: user
-    });
-    return false;
-  }
-});
 
 
 

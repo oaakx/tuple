@@ -13,6 +13,22 @@ Template.tupleDescription.helpers({
       var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
       return tuplesList.find({_id: tuple_id}).fetch()[0].description;
   },
+  'button': function(){ 
+      var user = Meteor.user().emails[0]["address"];
+      var description = user+" wants to join your tuple.";
+      var notifications = Notifications.find({description:description}).fetch();
+
+      var url = location.href;
+      var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
+      var title = tuplesList.find({_id: tuple_id}).fetch()[0].title;
+
+      for (var i =0; i<notifications.length; i++){
+        if (notifications[i].title==title){
+          return true;
+        }
+      }
+      return ;
+  },
 });
 
 
