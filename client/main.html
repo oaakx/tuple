@@ -50,16 +50,16 @@
 <template name="bottomnavbar">
   <nav class = "navbar navbar-expand sticky-top navbar-dark bg-dark">
     <ul class="navbar-nav" style="width:100%">
-      <li class="nav-item active">
+      <li class="nav-item {{isActivePath '/'}}">
         <a class="nav-link" href="/">Tuples</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{isActivePath '#'}}">
         <a class="nav-link" href="#">Chats</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{isActivePath '/notification'}}">
         <a class="nav-link" href="/notification">Notifications</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{isActivePath regex='^\\/profile'}}">
         <a class="nav-link" href="/profile">My Profile</a>
       </li>
     </ul>

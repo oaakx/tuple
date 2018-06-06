@@ -9,7 +9,7 @@ Template.profile.helpers({
   }
 });
 
-Router.route('/mytuples',function(){
+Router.route('/profile/mytuples',function(){
   this.render("browsebar",{to:"header"});
   this.render("mytuples");
 })
