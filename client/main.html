@@ -12,7 +12,7 @@
 
 <template name="browsebar">
   <div class="topnavbar">
-    <a href="/fuuk" class="button" style="float:right;">Create</a>
+    <a href="/createTuple" class="button" style="float:right;">Create</a>
     {{> topnavbar}}
     {{> searchbar}}
   </div>
@@ -46,22 +46,20 @@
   </div>
 </template>
 
-
-
 <!-- Align properly, add pictures -->
 <template name="bottomnavbar">
   <nav class = "navbar navbar-expand sticky-top navbar-dark bg-dark">
     <ul class="navbar-nav" style="width:100%">
-      <li class="nav-item active">
+      <li class="nav-item {{isActivePath '/'}}">
         <a class="nav-link" href="/">Tuples</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{isActivePath '#'}}">
         <a class="nav-link" href="#">Chats</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{isActivePath '/notification'}}">
         <a class="nav-link" href="/notification">Notifications</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{isActivePath regex='^\\/profile'}}">
         <a class="nav-link" href="/profile">My Profile</a>
       </li>
     </ul>
@@ -72,17 +70,5 @@
   <div class="topnavbar">
     {{> topnavbar}}
     <a href="/" class="button" style="float: left">Back</a>
-  </div>
-</template>
-
-<template name="notification">
-  <div style="margin-top:80px; text-align:center;">
-    {{#each notifs}}
-      <div>
-        <h5 class = "mb-1"> {{title}} </h5>
-        <p class = "mt-2">{{description}}</p>
-      </div>
-    {{/each}}
-    <button class="btn btn-outline-primary" role = "button" type="submit" style="width:80%;">Get Notif</button>
   </div>
 </template>

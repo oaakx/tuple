@@ -1,0 +1,11 @@
+<template name="notification">
+  <div style="margin-top:80px; text-align:center;">
+    {{#each notifs}}
+      <div>
+        <h5 class = "mb-1"> {{title}} </h5>
+        <p class = "mt-2">{{description}}</p>
+      </div>
+    {{/each}}
+    <button class="btn btn-outline-primary" role = "button" type="submit" style="width:80%;">Get Notif</button>
+  </div>
+</template>
