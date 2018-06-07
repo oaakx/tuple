@@ -19,7 +19,7 @@ Template.tupleDescription.events({
     Notifications.insert({
       title: title,
       description: user + " wants to join your tuple.",
-      type: "tuple join request",
+      type: "join_request",
       read: false,
       user: creator
     });
