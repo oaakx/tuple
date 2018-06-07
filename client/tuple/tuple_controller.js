@@ -49,12 +49,11 @@ Template.createTuple.events({
 
       Meteor.call('insertTuple', title, description, creator, [creator], ( error )=>{
         if ( error ){
-          console.log( error );
+          sAlert.error(error);
         }
-        sAlert.success('Tuple is created!', {effect: 'slide', position: 'top-right', timeout: '3000', onRouteClose: false, stack: false, offset: '50px'});
+        Router.go("");
+        sAlert.success('Tuple is created!');
       });
-
-      return;
   },
 });
 

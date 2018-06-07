@@ -14,4 +14,16 @@ Router.route('/',function(){
   this.render('browsebody');
 });
 
-
+Meteor.startup(function () {
+  sAlert.config({
+    effect: 'slide',
+    position: 'top-right',
+    timeout: 3000,
+    html: false,
+    onRouteClose: false,
+    stack: false,
+    offset: 80,
+    beep: false,
+    onClose: _.noop //
+  });
+});

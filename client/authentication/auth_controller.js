@@ -14,9 +14,9 @@ Template.register.events({
             password: password
         }, function(error) {
           if(error) {
-            console.log(error.reason);
+            sAlert.error('')
           } else {
-            sAlert.success('Welcome to KAIST_TUPLE!', {effect: 'slide', position: 'top-right', timeout: '3000', onRouteClose: false, stack: false, offset: '50px'});
+            sAlert.success('Welcome to KAIST_TUPLE!');
             Router.go("/"); //Need to enable going to the page where login_signup was triggered
           }
         });
@@ -34,7 +34,7 @@ Template.login.events({
         if(error){
             console.log(error.reason);
         } else {
-            sAlert.success('Login successful!', {effect: 'slide', position: 'top-right', timeout: 'none', onRouteClose: false, stack: false, offset: '50px'});
+            sAlert.success('Login successful!');
             Router.go("/");
         }
     });
