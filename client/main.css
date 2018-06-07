@@ -14,6 +14,11 @@ a.button{
   margin-top: 4px;
   z-index: 99999;
 }
+
+a.logout{
+  width: 100px;
+}
+
 html, body {
   width: 100%;
   height: 100%;
@@ -124,3 +129,11 @@ li.nav-item {
   line-height: 1.5;
   color: #797979;
 }
+
+div {
+  background-color: #e9ecef;
+}
+div .topnavbar{
+  background-color: #e9ecef;
+}
+
