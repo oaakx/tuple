@@ -10,15 +10,15 @@ import { Mongo } from 'meteor/mongo'
 
 //REGISTER AND LOGIN FUNCTIONALITY HERE
 
-Router.route('/profile/friends_list', {
-  name: 'friends_list',
-  template: 'friends_list'
+Router.route('/profile/friends_list', function() {
+  // TODO header template for friends list (also my tuples)
+  this.render("friends_list");
 });
 
 
 Template.friends_list.helpers({
     'my_friends': function(){
-        
+
         var friend_left = Meteor.user().emails[0]["address"];
         // console.log(friend_left);
         return Friends.find({friend_left: friend_left}).fetch();;
@@ -35,50 +35,15 @@ Template.friends_list.events({
 
         // var friend_right = $(this).closest("tr").html();
         var friend_right = event.target.closest("tr").childNodes[1].innerHTML.trim();
-            
+
         console.log("Removing ", friend_left, "--", friend_right);
         setTimeout(function() {
             var connection_to_remove = Friends.findOne({friend_left: friend_left, friend_right: friend_right})._id;
-            Friends.remove(connection_to_remove);    
+            Friends.remove(connection_to_remove);
         }, 1000)
     }
 });
 
-
-
-
-
-// Router.route('/login', {
-//   name: 'login',
-//   template: 'login'
-// });
-
-
-
-
-
-// Template.profile.events({
-//     'click .logout': function(event){
-//         event.preventDefault();
-//         Meteor.logout();
-//         Router.go('profile');
-//     }
-// });
-
-// Template.login.events({
-//     'submit form': function(event){
-//         event.preventDefault();
-//         var email = $('[name=email]').val();
-//         var password = $('[name=password]').val();
-//     Meteor.loginWithPassword(email, password, function(error){
-//         if(error){
-//             console.log(error.reason);
-//         } else {
-//             Router.go("/");
-//         }
-//     });
-//     }
-// });
 Router.route('/profile',function(){
   this.render("topnavbar",{to:"header"});
   this.render("profile");
@@ -106,4 +71,9 @@ Template.mytuples.helpers({
       var user = Meteor.user().emails[0]["address"];
       return tuplesList.find({creator: user}).fetch();
   }
+});
+
+Router.route('/profile/settings',function(){
+  this.render("topnavbar",{to:"header"});
+  this.render("settings");
 });
