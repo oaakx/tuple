@@ -25,6 +25,16 @@ Meteor.startup(() => {
       Notifications.remove({description: description, title:title});
     },
 
+		resetPassEmail(email){
+			var user = Accounts.findUserByEmail(email);
+			Accounts.sendResetPasswordEmail(user);
+		},
+
+		registeredEmail(email){
+			if(Accounts.findUserByEmail(email) == null)
+				throw new Meteor.Error();
+		},
+
     is_valid_friend_email(my_email, friend_email){
       var result = Accounts.findUserByEmail(friend_email);
 
