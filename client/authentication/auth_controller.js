@@ -19,7 +19,7 @@ Router.route('/changepass',function(){
 });
 
 Router.route('/resetpass',function(){
-  this.render("topnavbar",{to:"header"});
+  this.render("add_friend_navbar",{to:"header"});
   this.render("resetpass");
 });
 

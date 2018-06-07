@@ -33,15 +33,7 @@ html, body {
 .all-container header {
   flex-grow: 0;
 }
-.navbardiv {
-    background-color: #333;
-    overflow: hidden;
-    flex-grow: 0;
-    /*flex: ;*/
-    /*position: fixed;*/
-    /*bottom: 0;*/
-    /*width: 100%;*/
-}
+
 
 h4 {
   padding-top: 5px;

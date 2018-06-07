@@ -50,7 +50,7 @@
         </div>
       </div>
       <div class="row">
-      <a class="nav-link" href="{{pathFor route='register'}}">No account? Register</a>
+      <a class="nav-link" href="{{pathFor route='register'}}">No account? Register</a><p></p>
       <a class="nav-link" href="{{pathFor route='resetpass'}}">Forgot password? Reset it.</a>
       </div>
       <div class="row">
@@ -67,13 +67,29 @@
 </template>
 
 <template name="resetpass">
-  <div style="text-align:center;">
-    <h2>Reset your password</h2>
+
+  <div style="text-align:center; margin: 40px;">
+
+  <h5>Reset password</h5>
+  <div class="row">
     <form class="resetpass">
-      <p>Your Email: <input type="email" name="email"></p>
-      <p><input type="submit" value="Reset"></p>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="email" name="email" >
+          <label for="email">Your Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class=" col s12">
+          <button  class="btn btn-large" type="submit" value="Reset">
+            Reset Password
+          </button>
+        </div>
+      </div>
     </form>
   </div>
+</div>
+
 </template>
 
 <template name="changepass">
