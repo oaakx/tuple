@@ -72,3 +72,7 @@ Template.mytuples.helpers({
       return tuplesList.find({creator: user}).fetch();
   }
 });
+
+Router.route('/profile/settings',function(){
+  this.render("settings");
+});
