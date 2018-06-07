@@ -21,7 +21,7 @@ Meteor.startup(function () {
     timeout: 3000,
     html: false,
     onRouteClose: false,
-    stack: false,
+    stack: true,
     offset: 80,
     beep: false,
     onClose: _.noop //

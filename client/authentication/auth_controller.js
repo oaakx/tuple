@@ -3,12 +3,21 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Mongo } from 'meteor/mongo'
 
 /* Registration event handler */
-
 Template.register.events({
     'submit form': function(event){
         event.preventDefault();
         var email = $('[name=email]').val();
         var password = $('[name=password]').val();
+
+        // check if its unused kaist email
+        if(!email.endsWith("@kaist.ac.kr")){
+          sAlert.error("Only KAIST emails are allowed.")
+          return;
+        }else if(Meteor.findUserByEmail(email) != null){
+          sAlert.error("This email is already registered.")
+          return;
+        }
+
         Accounts.createUser({
             email: email,
             password: password
