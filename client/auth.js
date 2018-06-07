@@ -20,6 +20,7 @@ Template.register.events({
           if(error) {
             console.log(error.reason);
           } else {
+            sAlert.success('Welcome to KAIST_TUPLE!', {effect: 'slide', position: 'top-right', timeout: '3000', onRouteClose: false, stack: false, offset: '50px'});
             Router.go("/"); //Need to enable going to the page where login_signup was triggered
           }
         });
@@ -48,6 +49,7 @@ Template.login.events({
         if(error){
             console.log(error.reason);
         } else {
+            sAlert.success('Login successful!', {effect: 'slide', position: 'top-right', timeout: '3000', onRouteClose: false, stack: false, offset: '50px'});
             Router.go("/");
         }
     });
@@ -68,6 +70,7 @@ Template.changepass.events({
           if(error) {
             console.log(error.reason);
           } else {
+            sAlert.success('You changed your password!', {effect: 'slide', position: 'top-right', timeout: '3000', onRouteClose: false, stack: false, offset: '50px'});
             Meteor.logout()
             Router.go('profile'); //Need to enable going to the page where login_signup was triggered
           }

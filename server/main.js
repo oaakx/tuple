@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-
+import { Accounts } from 'meteor/accounts-base'
 
 
 Meteor.startup(() => {
@@ -15,7 +15,6 @@ Meteor.startup(() => {
       		});
 		},
 		updateTuple( title, guest){
-      console.log("BRO");
 			var tuple = tuplesList.find({title: title}).fetch()[0];
     		var members = tuple.members;
    			members.push(guest);
@@ -24,6 +23,16 @@ Meteor.startup(() => {
 		},
     removeNotification( description,title ){
       Notifications.remove({description: description, title:title});
+    },
+
+    is_valid_friend_email(my_email, friend_email){
+      var result = Accounts.findUserByEmail(friend_email);
+
+      if (result) {
+        return result.emails[0].address;
+      }
+
+      return my_email;
     }
 	});
 });

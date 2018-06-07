@@ -1,12 +1,14 @@
 <template name="notification">
   <div style="margin-top:80px; text-align:center;">
     {{#each notifs}}
-      <div>
+      <div class = "list-group-item list-group-secondary">
         <h5 class = "mb-1"> {{title}} </h5>
         <p class = "mt-2">{{description}}</p>
-        <button class="btn btn-outline-primary" role = "button" type="submit" style="width:80%;">Accept request</button>
-        <p></p>
+        <button class="btn btn-outline-primary" role = "button" type="submit" id="accept" style="width:80%;">Accept request</button>
+      <button class="btn btn-outline-primary" role = "button" type="submit" id="delete" style="width:80%;">Delete Notification</button>
+      <p></p>
       </div>
+      
     {{/each}}
   </div>
 </template>

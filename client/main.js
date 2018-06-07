@@ -24,7 +24,6 @@ Template.searchbar.events({
     $(".list-group-item").each(function(){
     var searchQuery = document.getElementById("searchTuple").value.toLowerCase();
     var title = $(this).attr("class").split(" ")[2].toLowerCase();
-    console.log("YAY");
     if (searchQuery!=""){
       if (title.includes(searchQuery)) {
         $(this).show();
@@ -117,7 +116,7 @@ Template.browsebody.helpers({
   //     .catch(e => console.log(e.message));
   // });
 
-Template.testcom.helpers({
+Template.commentbox.helpers({
     'tup_comment': function(){
         var url = location.href;
         var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
@@ -125,7 +124,7 @@ Template.testcom.helpers({
     }
 });
 
-Template.testcom.events({
+Template.commentbox.events({
   'click button':function(event){
       event.preventDefault();
       if (!Meteor.user()) {

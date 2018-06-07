@@ -1,0 +1,50 @@
+<template name="friends_list">
+  <div style="text-align:center;">  
+    {{#if currentUser}}
+      <br><br>
+      <h3>My Friends</h3>
+      <table align="center" style="width:80%; border: 1px solid black;">
+      {{#each my_friends}}
+        <tr style="border: solid thin;">
+          <td>
+            {{friend_right}}</td><td>
+            <button style="float: right" class="unfriend_btn btn btn-outline-primary">Unfriend</button>
+          </td>
+        </tr>
+        {{/each}}
+      </table>
+    {{else}}
+      {{> login}}
+    {{/if}}
+  </div>
+</template>
+
+
+<template name="friends_list_navbar">
+  <div class="topnavbar">
+    {{> topnavbar}}
+    <a href="/profile" class="button" style="float: left">Back</a>
+    <a href="/profile/add_friend" class="button" style="float: right">Add</a>
+  </div>
+</template>
+
+<template name="add_friend_navbar">
+  <div class="topnavbar">
+    {{> topnavbar}}
+    <a href="/profile" class="button" style="float: left">Back</a>
+  </div>
+</template>
+
+
+<template name="add_friend">
+  <div style="text-align:center;">  
+    <br><br>
+    <h3>Add friend</h3>
+    <p style="color: red" id="add_friend_result_message"></p>
+    <form class="friend_add">
+          <p><input style="border: 1px solid" type="email" name="friend_email" placeholder="E-mail"></p>
+          <p><input class="btn btn-outline-primary" type="submit" value="Add friend"></p>
+    </form>
+ </div>
+</template>
+
