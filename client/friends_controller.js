@@ -35,16 +35,17 @@ Template.add_friend.events({
         var friend_email = $('[name=friend_email]').val();
         var my_email = Meteor.user().emails[0].address;
         
-        // var result = "dummy";
+
+
         Meteor.call('is_valid_friend_email', my_email, friend_email, function(error, result) {
             if (error) {
-                document.find
+                document.getElementById("add_friend_result_message").innerHTML = "An error occurred while sending friend request. Please try again.";
             }else {
                 //if I get my_email back, it means the email does not exist or trying to add yourself
                 if (my_email != result) {
                     send_friend_request_notification(my_email, result);
-                    // Friends.insert({friend_left: my_email, friend_right: friend_email});
-                    // Friends.insert({friend_left: friend_email, friend_right: my_email});
+                } else {
+                    document.getElementById("add_friend_result_message").innerHTML = "Invalid email address.";
                 }
             }
         });
@@ -66,7 +67,7 @@ function send_friend_request_notification(user, potential_friend) {
 }
 
 
-
+/* Order of emails is not important */
 function add_friends_pair(friend_left, friend_right) {
     Friends.insert({friend_left: friend_left, friend_right: friend_right});
     Friends.insert({friend_left: friend_right, friend_right: friend_left});
