@@ -15,9 +15,6 @@ a.button{
   z-index: 99999;
 }
 
-a.logout{
-  width: 100px;
-}
 
 html, body {
   width: 100%;
@@ -132,10 +129,5 @@ li.nav-item {
   color: #797979;
 }
 
-div {
-  background-color: #e9ecef;
-}
-div .topnavbar{
-  background-color: #e9ecef;
-}
+
 
