@@ -23,6 +23,7 @@
           </button>
         </div>
       </div>
+
     </form>
   </div>
 </div>
@@ -50,6 +51,7 @@
       </div>
       <div class="row">
       <a class="nav-link" href="{{pathFor route='register'}}">No account? Register</a>
+      <a class="nav-link" href="{{pathFor route='resetpass'}}">Forgot password? Reset it.</a>
       </div>
       <div class="row">
         <div class=" col s12">
@@ -61,6 +63,17 @@
     </form>
   </div>
 </div>
+
+</template>
+
+<template name="resetpass">
+  <div style="text-align:center;">
+    <h2>Reset your password</h2>
+    <form class="resetpass">
+      <p>Your Email: <input type="email" name="email"></p>
+      <p><input type="submit" value="Reset"></p>
+    </form>
+  </div>
 </template>
 
 <template name="changepass">
@@ -88,6 +101,7 @@
           </button>
         </div>
       </div>
+
     </form>
   </div>
 </div>
