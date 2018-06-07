@@ -15,7 +15,6 @@ Meteor.startup(() => {
       		});
 		},
 		updateTuple( title, guest){
-      console.log("BRO");
 			var tuple = tuplesList.find({title: title}).fetch()[0];
     		var members = tuple.members;
    			members.push(guest);

@@ -31,27 +31,35 @@ Template.notification.helpers({
 
 Template.notification.events({
   'click button':function(event){
-    event.preventDefault();
-    if (!Meteor.user()) {
-      alert("You need to be logged in");
-      Router.go("login");
-      return false;
+    if ($(event.target).prop("id")=="accept"){
+      event.preventDefault();
+      if (!Meteor.user()) {
+        alert("You need to be logged in");
+        Router.go("login");
+        return false;
+      }
+      var user = Meteor.user().emails[0]["address"];
+      var guest = this.description.split(" ")[0];
+
+      Meteor.call('updateTuple', this.title, guest, ( error )=>{
+        if ( error ){
+          console.log( error );
+        }
+      });
+
+      Meteor.call('removeNotification', this.description, this.title, ( error )=>{
+        if ( error ){
+          console.log( error );
+        }
+      });
+    }else{
+      return;
+      Meteor.call('removeNotification', this.description, this.title, ( error )=>{
+        if ( error ){
+          console.log( error );
+        }
+      });
     }
-    var user = Meteor.user().emails[0]["address"];
-    var guest = this.description.split(" ")[0];
-
-    Meteor.call('updateTuple', this.title, guest, ( error )=>{
-      if ( error ){
-        console.log( error );
-      }
-    });
-
-    Meteor.call('removeNotification', this.description, this.title, ( error )=>{
-      if ( error ){
-        console.log( error );
-      }
-    });
-
     return false;
   }
 });

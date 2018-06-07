@@ -87,32 +87,6 @@ Template.tupleDescription.events({
   }
 });
 
-Template.createTuple.events({
-  'click button'(event, instance) {
-      let todayDate = new Date();
-      var time = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
-      let bar = "-";
-      let dateOfUpload = (todayDate.getMonth() + 1).toString().concat(bar, (todayDate.getDate()).toString(), bar, (todayDate.getFullYear()).toString(), bar, time.toString());
-      let title = $("#title").val();
-      let description = $("#description").val();
-      if (title.length>30){
-        return false;
-      }
-      if (description == "" || title == "") {
-        return;
-      }
-
-      var creator = Meteor.user().emails[0]["address"];
-
-      Meteor.call('insertTuple', title, description, creator, [creator], ( error )=>{
-        if ( error ){
-          console.log( error );
-        }
-      });
-      return;
-  },
-});
-
 Template.commentbox.helpers({
     'tup_comment': function(){
         var url = location.href;
