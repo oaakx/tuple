@@ -14,7 +14,18 @@ Template.notification.helpers({
         return false;
       }
       var user = Meteor.user().emails[0]["address"];
-      return Notifications.find({user: user}).fetch();
+      var notifications = Notifications.find({user: user}).fetch();
+      var arrayOfNot = []
+      for (var i = 0; i<notifications.length; i++){
+        var notification = notifications[i];
+        var guest = notification.description.split(" ")[0];
+        if (guest=="You"){
+          continue;
+        }
+        arrayOfNot.push(notification);
+      }
+
+      return arrayOfNot;
   }
 });
 
@@ -27,13 +38,35 @@ Template.notification.events({
       return false;
     }
     var user = Meteor.user().emails[0]["address"];
-    Notifications.insert({
-      title: "Sample Title",
-      description: "You received a sample notification",
-      type: "sample",
-      read: false,
-      user: user
+    var guest = this.description.split(" ")[0];
+
+    Meteor.call('updateTuple', this.title, guest, ( error )=>{
+      if ( error ){
+        console.log( error );
+      }
     });
+
+    Meteor.call('removeNotification', this.description, this.title, ( error )=>{
+      if ( error ){
+        console.log( error );
+      }
+    });
+
     return false;
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
