@@ -1,3 +1,5 @@
+
+/* Unfriend a friend from the friends list event handler*/
 Template.friends_list.events({
     'click .unfriend_btn': function(event){
         event.preventDefault();
@@ -17,19 +19,7 @@ Template.friends_list.events({
     }
 });
 
-
-
-Router.route('/profile/friends_list', function() {
-  this.render("friends_list_navbar",{to:"header"});
-  this.render("friends_list");
-});
-
-
-Router.route('/profile/add_friend', function() {
-  this.render("add_friend_navbar",{to:"header"});
-  this.render("add_friend");
-});
-
+/* Add new friend by e-mail event handler */
 
 Template.add_friend.events({
     'submit form': function(event){
@@ -55,6 +45,23 @@ Template.add_friend.events({
 });
 
 
+/* Routes */
+
+Router.route('/profile/friends_list', function() {
+  this.render("friends_list_navbar",{to:"header"});
+  this.render("friends_list");
+});
+
+
+Router.route('/profile/add_friend', function() {
+  this.render("add_friend_navbar",{to:"header"});
+  this.render("add_friend");
+});
+
+
+/* Helper functions */
+
+/* Notify user about friend request and allow him/her to accept or reject it */
 function send_friend_request_notification(user, potential_friend) {
     
     Notifications.insert({
@@ -69,7 +76,7 @@ function send_friend_request_notification(user, potential_friend) {
 }
 
 
-/* Order of emails is not important */
+/* Upon acceptance of friend request this function creates friends pairs into Database */
 function add_friends_pair(friend_left, friend_right) {
     Friends.insert({friend_left: friend_left, friend_right: friend_right});
     Friends.insert({friend_left: friend_right, friend_right: friend_left});

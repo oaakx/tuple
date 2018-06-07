@@ -22,22 +22,6 @@
 </template>
 
 
-<template name="friends_list_navbar">
-  <div class="topnavbar">
-    {{> topnavbar}}
-    <a href="/profile" class="button" style="float: left">Back</a>
-    <a href="/profile/add_friend" class="button" style="float: right">Add</a>
-  </div>
-</template>
-
-<template name="add_friend_navbar">
-  <div class="topnavbar">
-    {{> topnavbar}}
-    <a href="/profile" class="button" style="float: left">Back</a>
-  </div>
-</template>
-
-
 <template name="add_friend">
   {{#if currentUser}}
   <div style="text-align:center;">  
@@ -54,3 +38,20 @@
   {{/if}}
 </template>
 
+
+
+<template name="friends_list_navbar">
+  <div class="topnavbar">
+    {{> topnavbar}}
+    <a href="/profile" class="button" style="float: left">Back</a>
+    <a href="/profile/add_friend" class="button" style="float: right">Add</a>
+  </div>
+</template>
+
+
+<template name="add_friend_navbar">
+  <div class="topnavbar">
+    {{> topnavbar}}
+    <a href="/profile" class="button" style="float: left">Back</a>
+  </div>
+</template>
