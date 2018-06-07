@@ -20,7 +20,7 @@ Template.tupleDescription.helpers({
       var tuple_id = url.substring(url.indexOf("tupleDescription")+17);
       return tuplesList.find({_id: tuple_id}).fetch()[0].description;
   },
-  'button': function(){ 
+  'button': function(){
       var user = Meteor.user().emails[0]["address"];
       var description = user+" wants to join your tuple.";
       var notifications = Notifications.find({description:description}).fetch();
@@ -36,7 +36,7 @@ Template.tupleDescription.helpers({
       }
       return ;
   },
-  'main_button': function(){ 
+  'main_button': function(){
       var user = Meteor.user().emails[0]["address"];
 
       var url = location.href;
@@ -85,6 +85,34 @@ Template.tupleDescription.events({
     var idd = template;
     console.log(idd);
   }
+});
+
+Template.createTuple.events({
+  'click button'(event, instance) {
+      let todayDate = new Date();
+      var time = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
+      let bar = "-";
+      let dateOfUpload = (todayDate.getMonth() + 1).toString().concat(bar, (todayDate.getDate()).toString(), bar, (todayDate.getFullYear()).toString(), bar, time.toString());
+      let title = $("#title").val();
+      let description = $("#description").val();
+      if (title.length>30){
+        return false;
+      }
+      if (description == "" || title == "") {
+        return;
+      }
+
+      var creator = Meteor.user().emails[0]["address"];
+
+      Meteor.call('insertTuple', title, description, creator, [creator], ( error )=>{
+        if ( error ){
+          console.log( error );
+        }
+        sAlert.success('Tuple is created!', {effect: 'slide', position: 'top-right', timeout: '3000', onRouteClose: false, stack: false, offset: '50px'});
+      });
+
+      return;
+  },
 });
 
 Template.commentbox.helpers({
