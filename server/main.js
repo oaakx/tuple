@@ -28,14 +28,11 @@ Meteor.startup(() => {
     is_valid_friend_email(my_email, friend_email){
       var result = Accounts.findUserByEmail(friend_email);
 
-      if (result) { 
+      if (result) {
         return result.emails[0].address;
       }
 
       return my_email;
-
     }
-
-
 	});
 });

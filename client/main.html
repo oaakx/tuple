@@ -1,13 +1,13 @@
 <template name="GeneralLayout">
-  <header>
-    {{> yield "header"}}
-  </header>
-  <body>
-    {{> yield}}
-  </body>
-  <footer class="navbardiv">
-    {{> bottomnavbar}}
-  </footer>
+  <div class="all-container">
+    <header>
+      {{> yield "header"}}
+    </header>
+    <div class="main-container">{{> yield}}</div>
+    <footer class="navbardiv">
+      {{> bottomnavbar}}
+    </footer>
+  </div>
 </template>
 
 <template name="browsebar">
