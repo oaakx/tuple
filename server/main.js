@@ -33,6 +33,9 @@ Meteor.startup(() => {
 		registeredEmail(email){
 			if(Accounts.findUserByEmail(email) == null)
 				throw new Meteor.Error();
+			else {
+				return email;
+			}
 		},
 
     is_valid_friend_email(my_email, friend_email){
