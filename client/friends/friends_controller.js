@@ -44,6 +44,17 @@ Template.add_friend.events({
     }
 });
 
+/* Fetch friends from the database */
+
+Template.friends_list.helpers({
+    'my_friends': function(){
+        var friend_left = Meteor.user().emails[0]["address"];
+        return Friends.find({friend_left: friend_left}).fetch();;
+    }
+});
+
+
+
 
 /* Routes */
 

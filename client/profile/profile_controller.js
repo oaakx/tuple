@@ -2,40 +2,43 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Mongo } from 'meteor/mongo'
 
-//Comments functionality here
 
+/* Change password event handler */
+Template.changepass.events({
+    'submit form': function(event){
+        event.preventDefault();
+        var oldpass = $('[name=oldpass]').val();
+        var newpass = $('[name=newpass]').val();
+        Accounts.changePassword(oldpass,newpass, function(error) {
+          if(error) {
+            console.log(error.reason);
+          } else {
+            sAlert.success('You changed your password!', {effect: 'slide', position: 'top-right', timeout: '3000', onRouteClose: false, stack: false, offset: '50px'});
+            Meteor.logout()
+            Router.go('profile'); //Need to enable going to the page where login_signup was triggered
+          }
+        });
+    }
+});
 
-
-
-//REGISTER AND LOGIN FUNCTIONALITY HERE
-
-
-
-Template.friends_list.helpers({
-    'my_friends': function(){
-
-        var friend_left = Meteor.user().emails[0]["address"];
-        // console.log(friend_left);
-        return Friends.find({friend_left: friend_left}).fetch();;
+/* Logout handler */
+Template.profile.events({
+    'click .logout': function(event){
+        event.preventDefault();
+        Meteor.logout();
+        Router.go('profile');
     }
 });
 
 
-Router.route('/profile',function(){
-  this.render("topnavbar",{to:"header"});
-  this.render("profile");
-});
-
+/* retrieve username */
 Template.profile.helpers({
   'username': function(){
     return Meteor.user().emails[0]["address"];
   }
 });
 
-Router.route('/profile/mytuples',function(){
-  this.render("browsebar",{to:"header"});
-  this.render("mytuples");
-})
+/* retrive tuples */
 
 Template.mytuples.helpers({
   'tuples': function(){
@@ -50,7 +53,23 @@ Template.mytuples.helpers({
   }
 });
 
+
+
+/* Routes */
+
 Router.route('/profile/settings',function(){
   this.render("topnavbar",{to:"header"});
   this.render("settings");
 });
+
+Router.route('/profile/mytuples',function(){
+  this.render("browsebar",{to:"header"});
+  this.render("mytuples");
+})
+
+
+Router.route('/profile',function(){
+  this.render("topnavbar",{to:"header"});
+  this.render("profile");
+});
+

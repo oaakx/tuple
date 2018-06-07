@@ -1,33 +1,6 @@
-Router.route('/notification',function(){
-  this.render('topnavbar',{to: "header"});
-  this.render('notification');
 
-  var userID = this.params._id;
-});
 
-Template.notification.helpers({
-  'notifs': function(){
-      var url = location.href;
-      if (!Meteor.user()) {
-        alert("You need to be logged in");
-        Router.go("login");
-        return false;
-      }
-      var user = Meteor.user().emails[0]["address"];
-      var notifications = Notifications.find({user: user}).fetch();
-      var arrayOfNot = []
-      for (var i = 0; i<notifications.length; i++){
-        var notification = notifications[i];
-        var guest = notification.description.split(" ")[0];
-        if (guest=="You"){
-          continue;
-        }
-        arrayOfNot.push(notification);
-      }
-
-      return arrayOfNot;
-  }
-});
+/* Handle notification actions : accept, reject  */
 
 Template.notification.events({
   'click button':function(event){
@@ -79,8 +52,41 @@ Template.notification.events({
   }
 });
 
+/* Retrieve the notification of a user */
+
+Template.notification.helpers({
+  'notifs': function(){
+      var url = location.href;
+      if (!Meteor.user()) {
+        alert("You need to be logged in");
+        Router.go("login");
+        return false;
+      }
+      var user = Meteor.user().emails[0]["address"];
+      var notifications = Notifications.find({user: user}).fetch();
+      var arrayOfNot = []
+      for (var i = 0; i<notifications.length; i++){
+        var notification = notifications[i];
+        var guest = notification.description.split(" ")[0];
+        if (guest=="You"){
+          continue;
+        }
+        arrayOfNot.push(notification);
+      }
+
+      return arrayOfNot;
+  }
+});
 
 
+
+/* Routes */
+
+Router.route('/notification',function(){
+  this.render('topnavbar',{to: "header"});
+  this.render('notification');
+  var userID = this.params._id;
+});
 
 
 
