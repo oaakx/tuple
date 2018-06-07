@@ -48,12 +48,12 @@ Template.createTuple.events({
       var creator = Meteor.user().emails[0]["address"];
 
       Meteor.call('insertTuple', title, description, creator, [creator], ( error )=>{
-        if ( error ){
-          sAlert.error(error);
-        }
-        Router.go("");
-        sAlert.success('Tuple is created!');
-      });
+      if ( error ){
+        sAlert.error(error);
+      }
+      sAlert.success('Tuple is created!');
+      Router.go("/");
+    });
   },
 });
 

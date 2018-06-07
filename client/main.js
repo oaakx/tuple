@@ -17,8 +17,8 @@ Router.route('/',function(){
 Meteor.startup(function () {
   sAlert.config({
     effect: 'slide',
-    position: 'top-right',
-    timeout: 3000,
+    position: 'bottom-right',
+    timeout: 1500,
     html: false,
     onRouteClose: false,
     stack: true,

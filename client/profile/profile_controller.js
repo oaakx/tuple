@@ -70,6 +70,6 @@ Router.route('/profile/mytuples',function(){
 
 
 Router.route('/profile',function(){
-  // this.render("topnavbar",{to:"header"});
+  this.render("topnavbar",{to:"header"});
   this.render("profile");
 });

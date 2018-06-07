@@ -40,36 +40,9 @@
   </div>
   {{else}}
     {{> login}}
-  {{/if}}  
-</template>
-
-<!-- 
-<template name="add_friend">
-  {{#if currentUser}}
-  <div style="text-align:center;">  
-    <br><br>
-    <h3>Add friend</h3>
-    <p style="color: red" id="add_friend_result_message"></p>
-    <form class="friend_add">
-          <p><input style="border: 1px solid" type="email" name="friend_email" placeholder="E-mail"></p>
-          <p><input class="btn btn-outline-primary" type="submit" value="Add friend"></p>
-    </form>
- </div>
-  {{else}}
-    {{> login}}
   {{/if}}
 </template>
- -->
 
-
-<!-- <template name="friends_list_navbar">
-  <div class="topnavbar">
-    {{> topnavbar}}
-    <a href="/profile" class="button" style="float: left">Back</a>
-    <a href="/profile/add_friend" class="button" style="float: right">Add</a>
-  </div>
-</template>
- -->
 <template name="friends_list_navbar">
   <nav>
     <div class="nav-wrapper">
@@ -95,4 +68,3 @@
     </div>
   </nav>
 </template>
-
