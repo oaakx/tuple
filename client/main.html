@@ -11,15 +11,15 @@
 </template>
 
 <template name="browsebar">
-  <div class="topnavbar">
-    <a href="/createTuple" class="button" style="float:right;">Create</a>
+  <div class="topnavbar" style="position: relative">
+    <a href="/createTuple" class="button" style="position: absolute; right: 3px; top: 0px;">Create</a>
     {{> topnavbar}}
     {{> searchbar}}
   </div>
 </template>
 
 <template name="browsebody">
-  <div id = "list-group-append" style="margin-top: 80px;">
+  <div id = "list-group-append">
     {{#each tuples}}
       <div class = "list-group-item list-group-secondary {{title}}">
         <h5 class = "mb-1"> {{title}} </h5>
@@ -38,7 +38,7 @@
 </template>
 
 <template name="searchbar">
-  <div class = "input-group" style="padding-top:4px;" >
+  <div class = "input-group" style="padding-top: 4px;" >
     <input class = "form-control" type="text" placeholder="Search" id="searchTuple">
     <div class = "input-group-append">
       <button class="btn btn-outline-primary" type="submit" id="searchTupleButton" style="color:#333;border-color:#333;"><i class="fa fa-search"></i></button>
@@ -67,8 +67,8 @@
 </template>
 
 <template name="topbarwithback">
-  <div class="topnavbar">
+  <div class="topnavbar" style="position: relative">
     {{> topnavbar}}
-    <a href="/" class="button" style="float: left">Back</a>
+    <a href="/" class="button" style="position: absolute; left: 3px; top: 0px; z-index: 3">Back</a>
   </div>
 </template>
