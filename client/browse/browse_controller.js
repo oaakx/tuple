@@ -1,6 +1,4 @@
 
-
-
 /* Tuple Search bar event handler */
 Template.searchbar.events({
   'submit .myclass_seach' (event) {
@@ -16,12 +14,12 @@ Template.searchbar.events({
         $(this).show();
       } else {
         $(this).hide();
-        }
-      }else{
-        $(this).show();
       }
+    }else{
+      $(this).show();
+    }
     });
-  },
+  }
 });
 
 /* Retrieve tuples to display */
