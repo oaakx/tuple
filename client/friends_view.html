@@ -8,7 +8,9 @@
         <tr style="border: solid thin;">
           <td>
             {{friend_right}}</td><td>
+            
             <button style="float: right" class="unfriend_btn btn btn-outline-primary">Unfriend</button>
+            <button style="float: right" class="unfriend_btn btn btn-outline-primary">Chat</button>
           </td>
         </tr>
         {{/each}}
@@ -37,6 +39,7 @@
 
 
 <template name="add_friend">
+  {{#if currentUser}}
   <div style="text-align:center;">  
     <br><br>
     <h3>Add friend</h3>
@@ -46,5 +49,8 @@
           <p><input class="btn btn-outline-primary" type="submit" value="Add friend"></p>
     </form>
  </div>
+  {{else}}
+    {{> login}}
+  {{/if}}
 </template>
 
