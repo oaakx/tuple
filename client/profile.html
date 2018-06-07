@@ -23,25 +23,7 @@
 </template>
 
 
-<template name="friends_list">
-  <div style="text-align:center;">  
-    {{#if currentUser}}
-      <h2>My Friends</h2>
-      <table align="center" style="width:80%; border: 1px solid black;">
-      {{#each my_friends}}
-        <tr style="border: solid thin;">
-          <td>
-            {{friend_right}}</td><td>
-            <button style="float: right" class="unfriend_btn btn btn-outline-primary">Unfriend</button>
-          </td>
-        </tr>
-        {{/each}}
-      </table>
-    {{else}}
-      {{> login}}
-    {{/if}}
-  </div>
-</template>
+
 
 <template name="mytuples">
   <div id = "list-group-append" style="margin-top: 80px;">
@@ -55,3 +37,5 @@
     {{/each}}
   </div>
 </template>
+
+
