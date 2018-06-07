@@ -3,7 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Mongo } from 'meteor/mongo'
 
 /* Registration event handler */
- 
+
 Template.register.events({
     'submit form': function(event){
         event.preventDefault();
@@ -34,7 +34,7 @@ Template.login.events({
         if(error){
             console.log(error.reason);
         } else {
-            sAlert.success('Login successful!', {effect: 'slide', position: 'top-right', timeout: '3000', onRouteClose: false, stack: false, offset: '50px'});
+            sAlert.success('Login successful!', {effect: 'slide', position: 'top-right', timeout: 'none', onRouteClose: false, stack: false, offset: '50px'});
             Router.go("/");
         }
     });
@@ -59,5 +59,3 @@ Router.route('/changepass',function(){
   this.render("topnavbar",{to:"header"});
   this.render("changepass");
 });
-
-

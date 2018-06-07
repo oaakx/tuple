@@ -11,9 +11,10 @@ Template.changepass.events({
         var newpass = $('[name=newpass]').val();
         Accounts.changePassword(oldpass,newpass, function(error) {
           if(error) {
+            sAlert.error('Incorrect password!', {effect: 'slide', position: 'top-right', timeout: '3000', onRouteClose: false, stack: false, offset: '50px'});
             console.log(error.reason);
           } else {
-            sAlert.success('You changed your password!', {effect: 'slide', position: 'top-right', timeout: '3000', onRouteClose: false, stack: false, offset: '50px'});
+            sAlert.success('You password has been changed!', {effect: 'slide', position: 'top-right', timeout: '3000', onRouteClose: false, stack: false, offset: '50px'});
             Meteor.logout()
             Router.go('profile'); //Need to enable going to the page where login_signup was triggered
           }
@@ -72,4 +73,3 @@ Router.route('/profile',function(){
   this.render("topnavbar",{to:"header"});
   this.render("profile");
 });
-

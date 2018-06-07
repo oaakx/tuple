@@ -89,7 +89,7 @@ li.nav-item {
   left: 10px;
   border-right-color: transparent;
   border-left-color: transparent;
-  border-bottom-color: transparent;  
+  border-bottom-color: transparent;
 }
 
 .tip-left {
@@ -97,7 +97,7 @@ li.nav-item {
   left: -20px;
   border-top-color: transparent;
   border-left-color: transparent;
-  border-bottom-color: transparent;  
+  border-bottom-color: transparent;
 }
 
 .tip-right {
@@ -105,7 +105,7 @@ li.nav-item {
   right: -25px;
   border-top-color: transparent;
   border-right-color: transparent;
-  border-bottom-color: transparent;  
+  border-bottom-color: transparent;
 }
 
 .dialogbox .commentbody {
@@ -130,4 +130,6 @@ li.nav-item {
 }
 
 
-
+div .s-alert-box-inner {
+  background-color: inherit; 
+}

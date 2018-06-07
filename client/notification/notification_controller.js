@@ -1,7 +1,12 @@
 
+/* Routes */
+Router.route('/notification',function(){
+  this.render('topnavbar',{to: "header"});
+  this.render('notification');
+  var userID = this.params._id;
+});
 
 /* Handle notification actions : accept, reject  */
-
 Template.notification.events({
   'click button':function(event){
     if ($(event.target).prop("id")=="accept"){
@@ -12,7 +17,7 @@ Template.notification.events({
         return false;
       }
       var description = $(event.target).parent().children(".mt-2").attr("id");
-      
+
       if (description.split(" ")[3]=="add"){
         var friend_left = description.split(" ")[0];
         var friend_right = Meteor.user().emails[0]["address"];
@@ -25,7 +30,6 @@ Template.notification.events({
         });
         return;
       }
-      return;
       var user = Meteor.user().emails[0]["address"];
       var guest = this.description.split(" ")[0];
 
@@ -53,7 +57,6 @@ Template.notification.events({
 });
 
 /* Retrieve the notification of a user */
-
 Template.notification.helpers({
   'notifs': function(){
       var url = location.href;
@@ -77,25 +80,3 @@ Template.notification.helpers({
       return arrayOfNot;
   }
 });
-
-
-
-/* Routes */
-
-Router.route('/notification',function(){
-  this.render('topnavbar',{to: "header"});
-  this.render('notification');
-  var userID = this.params._id;
-});
-
-
-
-
-
-
-
-
-
-
-
-
