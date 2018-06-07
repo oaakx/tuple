@@ -1,0 +1,20 @@
+.message-box {
+  margin: 5px;
+}
+.message-box.mine {
+  text-align: right;
+}
+.message-box .message {
+  width: 70%;
+  color: #1F2D3D;
+  background: #EAEAEA;
+  display: inline-block;
+  padding: 5px;
+}
+.message-box.mine .message {
+  /*background: #E1F4CB;*/
+  background: #BACBA9;
+}
+.send-message-input {
+  width: 100%;
+}

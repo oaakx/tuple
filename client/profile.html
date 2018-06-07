@@ -25,7 +25,7 @@
 
 
 <template name="friends_list">
-  <div style="text-align:center;">  
+  <div style="text-align:center;">
     {{#if currentUser}}
       <h2>My Friends</h2>
       <table align="center" style="width:80%; border: 1px solid black;">
@@ -54,5 +54,16 @@
         <a class = "mt-3 btn btn-outline-info" onclick="location.href='../tupleDescription/' + '{{_id}}'" style = "font-size: 12px;"> More Description </a>
       </div>
     {{/each}}
+  </div>
+</template>
+
+
+<template name="settings">
+  <div style="text-align:center; margin-top: 80px;">
+    {{#if currentUser}}
+      <a class = "mt-3 btn btn-outline-info" onclick="location.href='/changepass'" style = "font-size: 20px;"> Change Password </a>
+    {{else}}
+      {{> login}}
+    {{/if}}
   </div>
 </template>
