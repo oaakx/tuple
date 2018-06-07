@@ -55,7 +55,7 @@ Template.login.events({
 });
 
 Router.route('/changepass',function(){
-  ///this.render("topnavbar",{to:header});
+  this.render("topnavbar",{to:"header"});
   this.render("changepass");
 });
 
