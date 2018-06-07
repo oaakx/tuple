@@ -1,0 +1,16 @@
+<template name='messages'>
+  <div class='messages'>
+    <br>
+    {{#each messages }}
+      <div class='message-box{{#if mine}} mine{{/if}}'>
+        <div class='message'>{{ body }}</div>
+      </div>
+    {{/each}}
+  </div>
+  <form>
+    <div class='send-message-box'>
+      <textarea rows="4" cols="50" id='send-message-input'></textarea>
+      <input type="submit" id='send-message-button' value='Send message'>
+    </div>
+  </form>
+</template>
