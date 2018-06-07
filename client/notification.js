@@ -38,6 +38,21 @@ Template.notification.events({
         Router.go("login");
         return false;
       }
+      var description = $(event.target).parent().children(".mt-2").attr("id");
+      
+      if (description.split(" ")[3]=="add"){
+        var friend_left = description.split(" ")[0];
+        var friend_right = Meteor.user().emails[0]["address"];
+        Friends.insert({friend_left: friend_left, friend_right: friend_right});
+        Friends.insert({friend_left: friend_right, friend_right: friend_left});
+        Meteor.call('removeNotification', this.description, this.title, ( error )=>{
+          if ( error ){
+            console.log( error );
+          }
+        });
+        return;
+      }
+      return;
       var user = Meteor.user().emails[0]["address"];
       var guest = this.description.split(" ")[0];
 
