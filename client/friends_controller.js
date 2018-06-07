@@ -44,6 +44,9 @@ Template.add_friend.events({
                 //if I get my_email back, it means the email does not exist or trying to add yourself
                 if (my_email != result) {
                     send_friend_request_notification(my_email, result);
+                    document.getElementById("add_friend_result_message").style.color = "green";
+                    document.getElementById("add_friend_result_message").innerHTML = "Friend Request Sent.";
+
                 } else {
                     document.getElementById("add_friend_result_message").innerHTML = "Invalid email address.";
                 }
