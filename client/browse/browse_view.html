@@ -1,34 +1,64 @@
 
 <template name="browsebar">
-  <div class="topnavbar" style="position: relative">
+<!--   <div class="topnavbar" style="position: relative">
     <a href="/createTuple" class="button" style="position: absolute; right: 3px; top: 0px;">Create</a>
     {{> topnavbar}}
-    {{> searchbar}}
-  </div>
+    
+  </div> -->
+
+  <div style="position: fixed; top: 0px; width: 100%">
+    
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">KAIST</a>
+      <ul class="right">
+        <li><a class="waves-effect waves-light btn" href="/createTuple">Create</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  {{> searchbar}}
+
+        </div>
 </template>
 
 
 <template name="browsebody">
-  <div id = "list-group-append">
-    {{#each tuples}}
-      <div class = "list-group-item list-group-secondary {{title}}">
-        <h5 class = "mb-1"> {{title}} </h5>
-        <small class = "mb-4"> By:  {{creator}} </small>
-        <p class = "mt-2">{{description}}</p>
-        <a class = "mt-3 btn btn-outline-info" onclick="location.href='../tupleDescription/' + '{{_id}}'" style = "font-size: 12px;"> More Description </a>
-      </div>
-    {{/each}}
+  <div style="margin-top: 80px; margin-bottom: 40px; margin-left: 10px; margin-right: 10px" class="row" id="list-group-append">
+    <table>
+      {{#each tuples}}
+        <tr>
+          <td>
+            <div class = "list-group-item list-group-secondary {{title}}">
+              <h5> {{title}} </h5>
+              <h6> By:  {{creator}} </h6>
+              <p> {{description}}</p>
+              <a class = "mt-3 btn btn-outline-info" onclick="location.href='../tupleDescription/' + '{{_id}}'"> More Description </a>
+            </div>
+          </td>
+        </tr>
+
+      {{/each}}
+    </table>
   </div>
 </template>
+
 
 
 <template name="searchbar">
-  <div class = "input-group">
-    <input class = "form-control" type="text" placeholder="Search" id="searchTuple">
-    <div class = "input-group-append">
-      <button class="btn btn-outline-primary" type="submit" id="searchTupleButton" style="color:#333;border-color:#333;"><i class="fa fa-search"></i></button>
+  <div class="row" style=" background-color: white">
+    <div class="col s10">
+      <div class="input-group">
+        <input class="input-field  form-control" type="text" placeholder="Search" id="searchTuple">
+      </div> 
+    </div> 
+    <div class="col s2">
+      <button class="btn" type="submit" id="searchTupleButton" style="margin-top: 5px"><i class="material-icons">search</i></button>    
     </div>
+
   </div>
 </template>
+  
+
 
 

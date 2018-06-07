@@ -32,6 +32,7 @@ Template.add_friend.events({
             }else {
                 //if I get my_email back, it means the email does not exist or trying to add yourself
                 if (my_email != result) {
+                    console.log("whe?");
                     send_friend_request_notification(my_email, result);
                     document.getElementById("add_friend_result_message").style.color = "green";
                     document.getElementById("add_friend_result_message").innerHTML = "Friend Request Sent.";

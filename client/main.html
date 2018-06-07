@@ -3,10 +3,12 @@
     <header>
       {{> yield "header"}}
     </header>
-    <div class="main-container">{{> yield}}</div>
+
+    <div>{{> yield}}
     <footer class="navbardiv">
       {{> bottomnavbar}}
     </footer>
+    </div>
   </div>
 </template>
 
@@ -20,22 +22,20 @@
 
 <!-- Align properly, add pictures -->
 <template name="bottomnavbar">
-  <nav class = "navbar navbar-expand sticky-top navbar-dark bg-dark">
-    <ul class="navbar-nav" style="width:100%">
-      <li class="nav-item {{isActivePath '/'}}">
-        <a class="nav-link" href="/">Tuples</a>
-      </li>
-      <li class="nav-item {{isActivePath '/messages'}}">
-        <a class="nav-link" href="/messages">Chats</a>
-      </li>
-      <li class="nav-item {{isActivePath '/notification'}}">
-        <a class="nav-link" href="/notification">Notifications</a>
-      </li>
-      <li class="nav-item {{isActivePath regex='^\\/profile'}}">
-        <a class="nav-link" href="/profile">My Profile</a>
-      </li>
-    </ul>
+  <footer  style="padding: 0px !important; position: fixed; bottom: 0px;">
+  <nav class="nav-extended">
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent">
+        <li class="tab"><a class="{{isActivePath '/'}}" href="/">Tuples</a></li>
+        <li class="tab"><a class="{{isActivePath '/messages'}}" href="/messages">Chats</a></li>
+        <li class="tab"><a class="{{isActivePath '/notification'}}" href="/notification">Notifications</a></li>
+        <li class="tab"><a class="{{isActivePath '/profile'}}" href="/profile">Profile</a></li>
+      </ul>
+    </div>
   </nav>
+</footer>
+
+
 </template>
 
 <template name="topbarwithback">

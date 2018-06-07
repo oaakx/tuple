@@ -110,7 +110,7 @@ Template.tupleDescription.helpers({
 /*  Routes */
 
 Router.route('/tupleDescription/:_id',function(){
-  this.render('topbarwithback',{to: "header"});
+  this.render('tuple_description_topbar',{to: "header"});
   this.render('tupleDescription');
   var tupleID = this.params._id;
 });

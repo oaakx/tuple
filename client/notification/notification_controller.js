@@ -1,7 +1,7 @@
 
 /* Routes */
 Router.route('/notification',function(){
-  this.render('topnavbar',{to: "header"});
+  this.render('tuple_description_topbar',{to: "header"});
   this.render('notification');
   var userID = this.params._id;
 });

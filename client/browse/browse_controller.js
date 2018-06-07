@@ -3,6 +3,10 @@
 
 /* Tuple Search bar event handler */
 Template.searchbar.events({
+  'submit .myclass_seach' (event) {
+    console.log("This happens");
+  },
+
   'click button'(event, instance) {
     $(".list-group-item").each(function(){
     var searchQuery = document.getElementById("searchTuple").value.toLowerCase();
@@ -30,6 +34,6 @@ Template.browsebody.helpers({
 
 /* Routes */
 Router.route('/createTuple',function(){
-  this.render('topbarwithback',{to: "header"});
+  this.render('tuple_description_topbar',{to: "header"});
   this.render('createTuple');
 });

@@ -1,25 +1,25 @@
 <template name="tupleDescription">
-  <div class="text-center">
-    <div style="margin-top: 60px">
-      <h3>{{tuple_title}}</h3>
-    </div>
-    <div class="description">
-      <h5>{{tuple_description}}</h5>
-    </div>
-    {{#if main_button}}
-      <button class="btn btn-outline-primary" role = "button" type="submit" style="width:80%;" disabled="true">You're already a member</button>
-      {{else}}
+  
 
+  <div style="text-align:center; margin: 40px;">
+
+  <h4>{{tuple_title}}</h4>
+  <div class="description">
+    <h6>{{tuple_description}}</h6>
+  </div>
+    {{#if main_button}}
+      <button class="btn" role = "button" type="submit" style="width:80%;" disabled="true">Already a member</button>
+    {{else}}
     {{#if currentUser}}
       {{#if button}}
-      <button class="btn btn-outline-primary" role = "button" type="submit" style="width:80%;" disabled="true">Request Sent</button>
+      <button class="btn" role = "button" type="submit" style="width:80%;" disabled="true">Request Sent</button>
       {{else}}
-      <button class="btn btn-outline-primary" role = "button" type="submit" style="width:80%;">Join Tuple</button>
+      <button class="btn" role = "button" type="submit" style="width:80%;">Join Tuple</button>
       {{/if}}
     {{/if}}
     {{/if}}
   </div>
-  <div class="comment_box_section">
+  <div class="row comment_box_section">
     {{>commentbox}}
   </div>
 </template>
@@ -28,27 +28,33 @@
 
 <template name="createTuple">
   {{#if currentUser}}
-    <div class = "jumbotron jumbotron-fluid">
-      <h3 class = "text-center display-4 mb-3" style = "font-size: 30px;">
-        Create a Tuple
-      </h3>
-      <form class = "offset-1 col-10">
-        <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" placeholder="CS350: Study Group" required maxlength="30">
-          <small id="emailHelp" class="form-text text-muted text-left">Title of the Tuple</small>
-        </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea type="textarea" class="form-control" id="description" placeholder="Studio Session" rows = "5" required maxlength="500"> </textarea>
-          <small id="emailHelp" class="form-text text-muted text-left">Description about the Tuple</small>
-        </div>
-        <button class="btn btn-outline-primary" id = "createTupleButton" role = "button" type = "submit" style="width:100%;">Create Tuple</button>
-      </form>
+  <div style="text-align:center; margin: 40px;">
+  <h4>Create a Tuple</h4>
+  <form class = "offset-1 col-10">
+    <div class="form-group input-field">
+      <p>Title</p>
+      <input type="text" class="form-control" id="title" placeholder="CS350: Study Group" required maxlength="30">
     </div>
-  {{else}}
-    <div class = "jumbotron jumbotron-fluid">
-      <h4 style="text-align:center;">Please Sign In to create tuple</h4>
+    <div class="form-group">
+      <p>Description</p>
+      <textarea type="textarea" class=" form-control materialize-textarea" rows="5" placeholder="Studio Session..." id="description" required maxlength="500"></textarea>
     </div>
+
+    <button class="btn btn-outline-primary" id = "createTupleButton" role = "button" type = "submit" style="width:100%;">Create Tuple</button>
+  </form>
+  </div>
   {{/if}}
+
+</template>
+
+
+<template name="tuple_description_topbar">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">KAIST</a>
+      <ul class="left">
+        <li><a class="waves-effect waves-light btn" href="/">Back</a></li>
+      </ul>
+    </div>
+  </nav>
 </template>

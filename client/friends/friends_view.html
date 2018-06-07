@@ -1,16 +1,15 @@
 <template name="friends_list">
-  <div style="text-align:center;">  
+  <div style="text-align:center; margin-top: 40px;">
     {{#if currentUser}}
       <br><br>
-      <h3>My Friends</h3>
-      <table align="center" style="width:80%; border: 1px solid black;">
+      <h5>My Friends</h5>
+      <table align="center" style="width: 90%">
       {{#each my_friends}}
-        <tr style="border: solid thin;">
+        <tr>
+          <td><h6>{{friend_right}}</h6></td>
           <td>
-            {{friend_right}}</td><td>
-            
-            <button style="float: right" class="unfriend_btn btn btn-outline-primary">Unfriend</button>
-            <button style="float: right" class="unfriend_btn btn btn-outline-primary">Chat</button>
+            <button style="float: right; margin-left: 5px" class="unfriend_btn btn btn-small">Unfriend</button>
+            <button style="float: right" class="btn btn-small">Chat</button>
           </td>
         </tr>
         {{/each}}
@@ -18,10 +17,33 @@
     {{else}}
       {{> login}}
     {{/if}}
-  </div>
+</div>
+
 </template>
 
 
+<template name="add_friend">
+  {{#if currentUser}}
+  <div style="text-align:center; margin: 40px;">
+  <h5>Add friend</h5>
+  <div class="row">
+      <div class="row">
+        <p style="color: red" id="add_friend_result_message"></p>
+      </div>
+      <div class="row">
+        <form class="friend_add">
+          <p><input type="email" name="friend_email" placeholder="E-mail"></p>
+          <input class="btn btn-large" type="submit" value="Add friend">
+        </form>
+      </div>
+  </div>
+  </div>
+  {{else}}
+    {{> login}}
+  {{/if}}  
+</template>
+
+<!-- 
 <template name="add_friend">
   {{#if currentUser}}
   <div style="text-align:center;">  
@@ -37,21 +59,40 @@
     {{> login}}
   {{/if}}
 </template>
+ -->
 
 
-
-<template name="friends_list_navbar">
+<!-- <template name="friends_list_navbar">
   <div class="topnavbar">
     {{> topnavbar}}
     <a href="/profile" class="button" style="float: left">Back</a>
     <a href="/profile/add_friend" class="button" style="float: right">Add</a>
   </div>
 </template>
+ -->
+<template name="friends_list_navbar">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">KAIST</a>
+      <ul class="left">
+        <li><a class="waves-effect waves-light btn" href="/profile" >Back</a></li>
+      </ul>
+      <ul class="right">
+        <li><a class="waves-effect waves-light btn" href="/profile/add_friend">Add</a></li>
+      </ul>
+    </div>
+  </nav>
+</template>
 
 
 <template name="add_friend_navbar">
-  <div class="topnavbar">
-    {{> topnavbar}}
-    <a href="/profile" class="button" style="float: left">Back</a>
-  </div>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">KAIST</a>
+      <ul class="left">
+        <li><a class="waves-effect waves-light btn" href="/profile" >Back</a></li>
+      </ul>
+    </div>
+  </nav>
 </template>
+
