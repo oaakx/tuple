@@ -1,0 +1,21 @@
+<template name="commentbox">
+  <div style="text-align:center;">
+    <h4>Comments</h4>
+    {{#each tup_comment}}
+      <div class="dialogbox">
+        <div class="commentbody">
+          <span class="tip tip-left"></span>
+          <div class="message">
+            {{comment}}
+            <br>
+            <p style=" position: absolute; right: 5px; font-size: 10px">{{createdAt}} by {{madeBy}}</p>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+    <form class="add-Comment">
+    <textarea rows="3" style="border-width: 1px; border-color: #4c4cff; width: 80%;" placeholder="Your comment... " id="comment_text"></textarea>
+    <button class="btn btn-outline-primary" id="addCommentButton" role = "button" type="submit" style="width:80%;">Add Comment</button>
+    </form>
+  </div>
+</template>

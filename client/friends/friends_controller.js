@@ -1,3 +1,5 @@
+
+/* Unfriend a friend from the friends list event handler*/
 Template.friends_list.events({
     'click .unfriend_btn': function(event){
         event.preventDefault();
@@ -9,34 +11,21 @@ Template.friends_list.events({
 
         console.log("Removing ", friend_left, "--", friend_right);
         setTimeout(function() {
-            var connection_to_remove = Friends.findOne({friend_left: friend_left, friend_right: friend_right})._id;
-            Friends.remove(connection_to_remove);
+            var connection_to_remove1 = Friends.findOne({friend_left: friend_left, friend_right: friend_right})._id;
+            var connection_to_remove2 = Friends.findOne({friend_left: friend_right, friend_right: friend_left})._id;
+            Friends.remove(connection_to_remove1);
+            Friends.remove(connection_to_remove2);
         }, 1000)
     }
 });
 
-
-
-Router.route('/profile/friends_list', function() {
-  this.render("friends_list_navbar",{to:"header"});
-  this.render("friends_list");
-});
-
-
-Router.route('/profile/add_friend', function() {
-  this.render("add_friend_navbar",{to:"header"});
-  this.render("add_friend");
-});
-
+/* Add new friend by e-mail event handler */
 
 Template.add_friend.events({
     'submit form': function(event){
         event.preventDefault();
         var friend_email = $('[name=friend_email]').val();
         var my_email = Meteor.user().emails[0].address;
-        
-
-
         Meteor.call('is_valid_friend_email', my_email, friend_email, function(error, result) {
             if (error) {
                 document.getElementById("add_friend_result_message").innerHTML = "An error occurred while sending friend request. Please try again.";
@@ -56,6 +45,23 @@ Template.add_friend.events({
 });
 
 
+/* Routes */
+
+Router.route('/profile/friends_list', function() {
+  this.render("friends_list_navbar",{to:"header"});
+  this.render("friends_list");
+});
+
+
+Router.route('/profile/add_friend', function() {
+  this.render("add_friend_navbar",{to:"header"});
+  this.render("add_friend");
+});
+
+
+/* Helper functions */
+
+/* Notify user about friend request and allow him/her to accept or reject it */
 function send_friend_request_notification(user, potential_friend) {
     
     Notifications.insert({
@@ -70,7 +76,7 @@ function send_friend_request_notification(user, potential_friend) {
 }
 
 
-/* Order of emails is not important */
+/* Upon acceptance of friend request this function creates friends pairs into Database */
 function add_friends_pair(friend_left, friend_right) {
     Friends.insert({friend_left: friend_left, friend_right: friend_right});
     Friends.insert({friend_left: friend_right, friend_right: friend_left});
