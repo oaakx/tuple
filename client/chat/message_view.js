@@ -1,61 +1,61 @@
-import { Template } from 'meteor/templating';
-import './messages.html';
-import './messages.css';
-// import { MessageController } from './message_controller'
+/* === All chatrooms === */
 
-class MessageController {
-  constructor(user_id) {
-    this.user_id = user_id;
+Router.route('/chat/user/:email', function() {
+  // redirect to proper chat
+});
+
+Template['all-chatrooms'].helpers({
+  chatrooms: function() {
+    console.log(Meteor.user())
+    let my_email = Meteor.user().emails[0].address;
+    let chatrooms = ChatRooms.find({members: {'$in': [my_email]}}).fetch()
+    return chatrooms;
   }
+});
 
-  get_messages() {
-    return [
-      { body: 'Hi', mine: false },
-      { body: 'whadup?', mine: true },
-      { body: 'I need binzin ASAHP!!!', mine: false },
-      { body: 'Id rather go join the Schmekel', mine: true },
-    ];
-  }
+Router.route('/chat/rooms', function() {
+  this.render("topnavbar", {to: "header"});
+  this.render("all-chatrooms");
+});
 
-  send_message(body) {
+/* === A chatroom === */
 
-  }
-
-  get_chatrooms() {
-
-  }
-}
-
-// var controller = new MessageController()
-
-Router.route('/messages/:user_id', function() {
+Router.route('/chat/room/:room_id', function() {
   // messages = controller.get_messages();
   this.render("topnavbar", {to: "header"});
-  this.render("messages")
-;});
+  this.render("chatroom");
+});
 
-Template.messages.helpers({
-    messages: [
-    { body: 'Hi', mine: false },
-    { body: 'What\'s up?', mine: true },
-    { body: 'I need binzin ASAP', mine: false },
-    { body: 'Fuck off', mine: true },
-  ]
-})
+Template.chatroom.helpers({
+  chatroom: () => {
+    let room_id = Router.current().params['room_id'];
+    let chatroom = ChatRooms.findOne(room_id);
+    return chatroom;
+  },
+  messages: () => {
+    let room_id = Router.current().params['room_id'];
+    let messages = ChatMessages.find({room_id: room_id}).fetch();
+    return messages;
+  },
+  isme: (author) => {
+    me = Meteor.user().emails[0].address;
+    return author == me;
+  },
+});
 
-Template.messages.events({
-  'click #send-message-button': function(event) {
+Template.chatroom.events({
+  'submit #send-message-form': function(event) {
     event.preventDefault();
-    var from_user = Meteor.userId();
-    var to_user = Router.current().params['user_id'];
-    // console.log(to_user);
-    var message_body = document.getElementById('send-message-input').value;
-    console.log(message_body);
-    ChatRooms.find().fetch();
+
+    let target = event.target;
+    let room_id = Router.current().params['room_id'];
+    let author = Meteor.user().emails[0].address;
+    let body = target['message-body'].value;
     ChatMessages.insert({
-      'from': from_user,
-      'to': to_user,
-      'body': message_body,
-    })
-  }
-})
+      room_id: room_id,
+      author: author,
+      body: body,
+    });
+    target['message-body'].value = '';
+  },
+});

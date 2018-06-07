@@ -1,15 +1,32 @@
-<template name='messages'>
-  <div class='messages'>
-    {{#each messages }}
-      <div class='message-box{{#if mine}} mine{{/if}}'>
-        <div class='message'>{{ body }}</div>
-      </div>
+<template name='chatroom'>
+  {{ #if currentUser }}
+    {{ #each message in messages }}
+      {{#if isme message.author }}>> {{/if}}
+      {{ message.body }}<br>-- {{ message.author }}<br><br>
     {{/each}}
-  </div>
-  <form>
-    <div class='send-message-box'>
-      <textarea rows="4" cols="50" id='send-message-input'></textarea>
+
+    <form id="send-message-form">
+      <textarea rows="4" cols="50" name='message-body'></textarea>
       <input type="submit" id='send-message-button' value='Send message'>
-    </div>
-  </form>
+    </form>
+  {{ else }}
+    {{> login}}
+  {{ /if }}
+</template>
+
+<template name='all-chatrooms'>
+  {{ #if currentUser }}
+    chatrooms go here
+    {{ #each chatroom in chatrooms }}
+      <br>
+      <a href="/chat/room/{{ chatroom._id._str }}">
+      Chatroom with members:
+      {{ #each email in chatroom.members }}
+        {{ email }},
+      {{ /each }}
+      </a>
+    {{ /each }}
+  {{ else }}
+    {{> login }}
+  {{ /if }}
 </template>
