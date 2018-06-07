@@ -2,11 +2,8 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Mongo } from 'meteor/mongo'
 
-Router.route('/register',function(){
-  this.render("topnavbar",{to:"header"});
-  this.render("register");
-});
-
+/* Registration event handler */
+ 
 Template.register.events({
     'submit form': function(event){
         event.preventDefault();
@@ -26,18 +23,7 @@ Template.register.events({
     }
 });
 
-Template.profile.events({
-    'click .logout': function(event){
-        event.preventDefault();
-        Meteor.logout();
-        Router.go('profile');
-    }
-});
-
-Router.route('/login',function(){
-  this.render("topnavbar",{to:"header"});
-  this.render("login");
-});
+/* Login event handler */
 
 Template.login.events({
     'submit form': function(event){
@@ -55,24 +41,23 @@ Template.login.events({
     }
 });
 
+
+/* Routes */
+
+Router.route('/login',function(){
+  this.render("topnavbar",{to:"header"});
+  this.render("login");
+});
+
+Router.route('/register',function(){
+  this.render("topnavbar",{to:"header"});
+  this.render("register");
+});
+
+
 Router.route('/changepass',function(){
   this.render("topnavbar",{to:"header"});
   this.render("changepass");
 });
 
-Template.changepass.events({
-    'submit form': function(event){
-        event.preventDefault();
-        var oldpass = $('[name=oldpass]').val();
-        var newpass = $('[name=newpass]').val();
-        Accounts.changePassword(oldpass,newpass, function(error) {
-          if(error) {
-            console.log(error.reason);
-          } else {
-            sAlert.success('You changed your password!', {effect: 'slide', position: 'top-right', timeout: '3000', onRouteClose: false, stack: false, offset: '50px'});
-            Meteor.logout()
-            Router.go('profile'); //Need to enable going to the page where login_signup was triggered
-          }
-        });
-    }
-});
+
