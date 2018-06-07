@@ -23,8 +23,9 @@ Template.searchbar.events({
   'click button'(event, instance) {
     $(".list-group-item").each(function(){
     var searchQuery = document.getElementById("searchTuple").value.toLowerCase();
+    var title = $(this).attr("class").split(" ")[2].toLowerCase();
     if (searchQuery!=""){
-      if ($(this).hasClass(searchQuery)) {
+      if (title.includes(searchQuery)) {
         $(this).show();
       } else {
         $(this).hide();
