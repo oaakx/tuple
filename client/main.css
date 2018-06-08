@@ -26,15 +26,11 @@ html, body {
   display: flex;
   flex-direction: column;
 }
-.all-container header {
-  flex-grow: 0;
-}
-.all-container .main-container {
-  display: flex;
+.main-container {
   flex-grow: 1;
   overflow: auto;
 }
-.all-container footer {
+.all-container header {
   flex-grow: 0;
 }
 
