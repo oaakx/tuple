@@ -3,12 +3,10 @@
     <header>
       {{> yield "header"}}
     </header>
-
-    <div>{{> yield}}
-    <footer class="navbardiv">
+    <div class='main-container'>{{> yield}}</div>
+    <footer>
       {{> bottomnavbar}}
     </footer>
-    </div>
   </div>
 </template>
 
@@ -25,18 +23,18 @@
 
 <!-- Align properly, add pictures -->
 <template name="bottomnavbar">
-  <footer  style="padding: 0px !important; position: fixed; bottom: 0px; width: 100%">
+  <!-- <footer  style="padding: 0px !important; position: fixed; bottom: 0px; width: 100%"> -->
     <nav class="nav-extended">
       <div class="nav-content">
         <ul class="tabs tabs-transparent">
           <li class="tab"><a class="{{isActivePath '/'}}" href="/">Tuples</a></li>
-          <li class="tab"><a class="{{isActivePath '/messages'}}" href="/messages">Chats</a></li>
+          <li class="tab"><a class="{{isActivePath '/chat/rooms'}}" href="/chat/rooms">Chats</a></li>
           <li class="tab"><a class="{{isActivePath '/notification'}}" href="/notification">Notifications</a></li>
           <li class="tab"><a class="{{isActivePath '/profile'}}" href="/profile">Profile</a></li>
         </ul>
       </div>
     </nav>
-  </footer>
+  <!-- </footer> -->
 </template>
 
 <template name="topbarwithback">
