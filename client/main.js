@@ -22,7 +22,7 @@ Meteor.startup(function () {
     html: false,
     onRouteClose: false,
     stack: true,
-    offset: 80,
+    offset: 50,
     beep: false,
     onClose: _.noop //
   });

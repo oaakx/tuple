@@ -45,7 +45,7 @@ Template.mytuples.helpers({
   'tuples': function(){
       var url = location.href;
       if (!Meteor.user()) {
-        alert("You need to be logged in");
+        sAlert.error("You need to be logged in");
         Router.go("login");
         return false;
       }
