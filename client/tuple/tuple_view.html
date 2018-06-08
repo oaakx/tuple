@@ -30,7 +30,6 @@
   {{#if currentUser}}
   <div style="text-align:center; margin: 40px;">
   <h4>Create a Tuple</h4>
-  <form class = "offset-1 col-10">
     <div class="form-group input-field">
       <p>Title</p>
       <input type="text" class="form-control" id="title" placeholder="CS350: Study Group" required maxlength="30">
@@ -39,9 +38,7 @@
       <p>Description</p>
       <textarea type="textarea" class=" form-control materialize-textarea" rows="5" placeholder="Studio Session..." id="description" required maxlength="500"></textarea>
     </div>
-
-    <button class="btn" id = "createTupleButton_" role = "button" type = "submit" style="width:100%;">Create Tuple</button>
-  </form>
+    <button class="btn" id = "createTupleButton_" role = "button" style="width:100%;">Create Tuple</button>
   </div>
   {{else}}
     {{>login}}

@@ -32,8 +32,8 @@ Template.tupleDescription.events({
 /* Handle Tuple creation */
 
 Template.createTuple.events({
-  'click button'(event) {
-      preventDefault();
+  'click #createTupleButton_': function(event) {
+      // preventDefault();
       var todayDate = new Date();
       var time = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
 
