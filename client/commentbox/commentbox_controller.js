@@ -10,7 +10,7 @@ Template.commentbox.helpers({
 });
 
 
-/* Upon submission of a comment checks whether user is logged in
+/* Upon submission of a comment checks whether user is logged in 
   if the comment is empty or not if everything is okay, then comment is added
 */
 
@@ -18,7 +18,7 @@ Template.commentbox.events({
   'click button':function(event){
       event.preventDefault();
       if (!Meteor.user()) {
-        sAlert.error("You need to be logged in.");
+        alert("You need to be logged in _ ");
         Router.go("login");
         return false;
       }
@@ -55,7 +55,7 @@ Template.commentbox.events({
       var disp_time = day+"/"+month+"/"+year+ " " + time;
 
       if (comment == "") {
-        sAlert.error("You need to be logged in comm");
+        alert("You need to be logged in comm");
         return false;
       } else {
         Comments.insert({
