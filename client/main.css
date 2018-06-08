@@ -139,3 +139,7 @@ div .s-alert-box-inner {
 .comment_box_section {
   margin-bottom: 60px !important;
 }
+
+.report_area {
+  color: red;
+}
