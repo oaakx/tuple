@@ -1,7 +1,7 @@
 <template name='chatroom'>
   {{ #if currentUser }}
     <div class="chatroom">
-      <div class="chatroom-title">Moredores</div>
+      <div class="chatroom-title">{{ chatroom.title }}</div>
       <div class="chatroom-messages">
         <ul class="collection">
           {{ #each message in messages }}
@@ -16,8 +16,10 @@
       </div>
       <div class="chatroom-send-message">
         <form id="send-message-form">
-          <textarea rows="4" cols="50" name='message-body'></textarea>
-          <input type="submit" id='send-message-button' value='Send message'>
+          <div class='input-field'>
+            <input type='text' name='message-body' placeholder="Message to send...">
+            <input type="submit" id='send-message-button' value='Send message' class='btn' style='width: 100%;'>
+          </div>
         </form>
       </div>
     </div>
@@ -27,23 +29,43 @@
 </template>
 
 <template name='all-chatrooms'>
+  <div style="flex-grow: 1">
   {{ #if currentUser }}
     <div class="collection">
       {{ #each chatroom in chatrooms }}
-        <a href="/chat/room/{{ chatroom._id._str }}" class="collection-item avatar">
+        <a href="/chat/room/{{ chatroom._id }}" class="collection-item avatar">
           <img src="/images/avatar.png" alt="" class="circle">
           <span class="title">
-            {{ #each email in chatroom.members }}
+            {{ chatroom.title }}
+            <!-- {{ #each email in  }}
               {{ email }},
-            {{ /each }}
+            {{ /each }} -->
           </span>
-          <p>Last message</p>
+          <p><!-- Last message --></p>
         </a>
       {{ /each }}
     </div>
   {{ else }}
     {{> login }}
   {{ /if }}
+  </div>
+</template>
+
+<template name='new-chatroom'>
+  <div style="flex-grow: 1">
+  {{ #if currentUser }}
+    <form style='padding: 40px;' id='new-chatroom'>
+      <h4 style='text-align: center;'>New chatroom</h4>
+      <div class="input-field">
+        <input name='friend-email' type='text'>
+        <label for='friend-email'>Friend's email:</label>
+      </div>
+      <input type='submit' value='Start chat' class='btn' style='width: 100%'>
+    </form>
+  {{ else }}
+    {{> login }}
+  {{ /if }}
+  </div>
 </template>
 
 <!-- Navbars -->
