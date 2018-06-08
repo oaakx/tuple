@@ -59,16 +59,18 @@ Template.chatroom.helpers({
     let room_id = Router.current().params['room_id'];
     let chatroom = ChatRooms.findOne(room_id);
     let my_email = Meteor.user().emails[0].address;
-    chatroom.members = members;
-    if(chatroom.title === "")
+
+    if(chatroom.title === "") {
       members = [];
       for (let index in chatroom.members) {
         email = chatroom.members[index];
         if (email != my_email) {
-        members.push(email)
+          members.push(email)
+        }
+        chatroom.title = members.join(', ');
       }
     }
-    chatroom.title = members.join(', ');
+    
     return chatroom;
   },
   messages: () => {
@@ -76,14 +78,6 @@ Template.chatroom.helpers({
     let messages = ChatMessages.find({room_id: room_id}).fetch();
     return messages;
   },
-  not_me: function (email) {
-    if(email[0] !== Meteor.user().emails[0].address )
-      return email[0];
-    return email[1];
-  },
-  tuple_chat: function (title) {
-    return title !== "";
-  }
 });
 
 Template.chatroom.events({
