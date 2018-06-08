@@ -1,20 +1,16 @@
-.chatroom .message-box {
-  margin: 5px;
+.chatroom {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
-.chatroom .message-box.mine {
-  text-align: right;
+
+.chatroom .chatroom-title {
+  flex-grow: 0;
 }
-.chatroom .message-box .message {
-  width: 70%;
-  color: #1F2D3D;
-  background: #EAEAEA;
-  display: inline-block;
-  padding: 5px;
+.chatroom .chatroom-messages {
+  flex-grow: 1;
+  overflow: auto;
 }
-.chatroom .message-box.mine .message {
-  /*background: #E1F4CB;*/
-  background: #BACBA9;
-}
-.chatroom .send-message-input {
-  width: 100%;
+.chatroom .chatroom-send-message {
+  flex-grow: 0;
 }

@@ -1,14 +1,26 @@
 <template name='chatroom'>
   {{ #if currentUser }}
-    {{ #each message in messages }}
-      {{#if isme message.author }}>> {{/if}}
-      {{ message.body }}<br>-- {{ message.author }}<br><br>
-    {{/each}}
-
-    <form id="send-message-form">
-      <textarea rows="4" cols="50" name='message-body'></textarea>
-      <input type="submit" id='send-message-button' value='Send message'>
-    </form>
+    <div class="chatroom">
+      <div class="chatroom-title">Moredores</div>
+      <div class="chatroom-messages">
+        <ul class="collection">
+          {{ #each message in messages }}
+            <li class="collection-item avatar">
+              <img src="/images/avatar.png" alt="" class="circle">
+              <span class="title">{{ message.author }}</span>
+              <p><br>{{ message.body }}</p>
+            </li>
+          {{/each}}
+          <!-- {{#if isme message.author }} {{/if}} -->
+        </ul>
+      </div>
+      <div class="chatroom-send-message">
+        <form id="send-message-form">
+          <textarea rows="4" cols="50" name='message-body'></textarea>
+          <input type="submit" id='send-message-button' value='Send message'>
+        </form>
+      </div>
+    </div>
   {{ else }}
     {{> login}}
   {{ /if }}
@@ -16,17 +28,44 @@
 
 <template name='all-chatrooms'>
   {{ #if currentUser }}
-    chatrooms go here
-    {{ #each chatroom in chatrooms }}
-      <br>
-      <a href="/chat/room/{{ chatroom._id._str }}">
-      Chatroom with members:
-      {{ #each email in chatroom.members }}
-        {{ email }},
+    <div class="collection">
+      {{ #each chatroom in chatrooms }}
+        <a href="/chat/room/{{ chatroom._id._str }}" class="collection-item avatar">
+          <img src="/images/avatar.png" alt="" class="circle">
+          <span class="title">
+            {{ #each email in chatroom.members }}
+              {{ email }},
+            {{ /each }}
+          </span>
+          <p>Last message</p>
+        </a>
       {{ /each }}
-      </a>
-    {{ /each }}
+    </div>
   {{ else }}
     {{> login }}
   {{ /if }}
+</template>
+
+<!-- Navbars -->
+
+<template name="chat-topbar">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo" style="font-size: 18px">KAIST_TUPLE</a>
+      <ul class="right">
+        <li><a class="waves-effect waves-light btn" href="/chat/new">New</a></li>
+      </ul>
+    </div>
+  </nav>
+</template>
+
+<template name="chatroom-topbar">
+  <nav>
+    <div class="nav-wrapper">
+      <ul class="left">
+        <li><a class="waves-effect waves-light btn" href="/chat/rooms">Back</a></li>
+      </ul>
+      <a href="#!" class="brand-logo" style="font-size: 18px">KAIST_TUPLE</a>
+    </div>
+  </nav>
 </template>

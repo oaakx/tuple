@@ -14,7 +14,7 @@ Template['all-chatrooms'].helpers({
 });
 
 Router.route('/chat/rooms', function() {
-  this.render("topnavbar", {to: "header"});
+  this.render("chat-topbar", {to: "header"});
   this.render("all-chatrooms");
 });
 
@@ -22,7 +22,7 @@ Router.route('/chat/rooms', function() {
 
 Router.route('/chat/room/:room_id', function() {
   // messages = controller.get_messages();
-  this.render("topnavbar", {to: "header"});
+  this.render("chatroom-topbar", {to: "header"});
   this.render("chatroom");
 });
 
