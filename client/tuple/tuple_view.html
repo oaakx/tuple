@@ -1,6 +1,5 @@
 <template name="tupleDescription">
-  
-
+  <div class="generic-body">
   <div style="text-align:center; margin: 40px;">
 
   <h4>{{tuple_title}}</h4>
@@ -23,7 +22,8 @@
     {{>commentbox}}
   </div>
   <div class="report_area">
-    <a onclick="location.href='../../report/' + '{{tuple_title}}'" style="color: red !important">Report Tuple</a>
+    <a href="#" onclick="location.href='../../report/' + '{{tuple_title}}'" style="color: red !important">Report Tuple</a>
+  </div>
   </div>
 </template>
 

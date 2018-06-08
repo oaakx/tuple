@@ -1,6 +1,5 @@
 
 <template name="browsebar">
-  <div style="position: fixed; top: 0px; width: 100%">
   <nav>
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo">KAIST</a>
@@ -10,12 +9,12 @@
     </div>
   </nav>
   {{> searchbar}}
-  </div>
 </template>
 
 
 <template name="browsebody">
-  <div style="margin-top: 80px; margin-bottom: 40px; margin-left: 10px; margin-right: 10px" class="row" id="list-group-append">
+  <div class="generic-body">
+  <div class="row" id="list-group-append">
     <table>
       {{#each tuples}}
         <tr>
@@ -31,12 +30,13 @@
       {{/each}}
     </table>
   </div>
+  </div>
 </template>
 
 
 
 <template name="searchbar">
-  <div class="row" style=" background-color: white">
+  <div class="row" style=" background-color: white; margin: 0px">
     <div class="col s10">
       <div class="input-group">
         <input class="input-field  form-control" type="text" placeholder="Search" id="searchTuple">

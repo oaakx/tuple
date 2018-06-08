@@ -1,4 +1,5 @@
 <template name="friends_list">
+  <div class="generic-body">
   <div style="text-align:center; margin-top: 40px;">
     {{#if currentUser}}
       <br><br>
@@ -18,11 +19,13 @@
       {{> login}}
     {{/if}}
 </div>
+</div>
 
 </template>
 
 
 <template name="add_friend">
+  <div class="generic-body">
   {{#if currentUser}}
   <div style="text-align:center; margin: 40px;">
   <h5>Add friend</h5>
@@ -41,6 +44,7 @@
   {{else}}
     {{> login}}
   {{/if}}
+  </div>
 </template>
 
 <template name="friends_list_navbar">
