@@ -1,25 +1,35 @@
-import { Mongo } from 'meteor/mongo'
-
 /* === New Chatroom === */
 
 Router.route('/chat/user/:email', function() {
-  let friend_email = Route.current().params['email'];
-  let my_email = Meteor.user().emails[0].address;
-  let chatroom = ChatRooms.findOne({members: {'$all': [my_email, friend_email]}});
-
-  if (chatroom == undefined) {
-    console.log('chatroom not found...');
-    // ChatRooms.insert({members: [my_email, friend_email]}, (err, inserted) => {
-    //   let room_id = inserted;
-    //   console.log('new room created: ' + inserted)
-    //   Router.go('/chat/room/' + room_id);
-    // });
-  } else {
-    let room_id = chatroom._id;
-    console.log('going to room: ' + room_id);
-    Router.go('/chat/room/' + room_id);
-  }
+  this.render('topnavbar', {to: 'header'});
+  this.render('chat-user-redirect');
 });
+
+Template['chat-user-redirect'].helpers({
+  done: function() {
+    let friend_email = Router.current().params['email'];
+    let my_email = Meteor.user().emails[0].address;
+    let chatroom = ChatRooms.findOne({members: {'$all': [my_email, friend_email]}});
+
+    console.log(friend_email);
+    console.log(my_email);
+
+    if (chatroom == undefined) {
+      console.log('chatroom not found...');
+      ChatRooms.insert({members: [my_email, friend_email]}, (err, inserted) => {
+        let room_id = inserted;
+        console.log('new room created: ' + inserted)
+        Router.go('/chat/room/' + room_id);
+      });
+    } else {
+      let room_id = chatroom._id;
+      console.log('going to room: ' + room_id);
+      Router.go('/chat/room/' + room_id);
+    }
+
+    return 'redirecting...';
+  }
+})
 
 Router.route('/chat/new', function() {
   this.render("chat-topbar", {to: "header"});

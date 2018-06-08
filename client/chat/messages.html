@@ -28,6 +28,14 @@
   {{ /if }}
 </template>
 
+<template name='chat-user-redirect'>
+  {{ #if currentUser }}
+    {{ done }}
+  {{ else }}
+    {{> login }}
+  {{ /if }}
+</template>
+
 <template name='all-chatrooms'>
   <div style="flex-grow: 1">
   {{ #if currentUser }}
