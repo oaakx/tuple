@@ -40,18 +40,18 @@
   <div style="flex-grow: 1">
   {{ #if currentUser }}
     <div class="collection">
-      {{ #each chatroom in chatrooms }}
-        <a href="/chat/room/{{ chatroom._id }}" class="collection-item avatar">
-          <img src="/images/avatar.png" alt="" class="circle">
-          <span class="title">
-            {{ chatroom.title }}
-            <!-- {{ #each email in  }}
-              {{ email }},
-            {{ /each }} -->
-          </span>
-          <p><!-- Last message --></p>
-        </a>
-      {{ /each }}
+    {{ #each chatrooms }}
+      <a href="/chat/room/{{ _id }}" class="collection-item avatar">
+        <img src="/images/avatar.png" alt="" class="circle">
+        <span class="title">
+        {{#if tuple_chat title}}
+          {{ title }}
+        {{else}}
+          {{not_me members }}
+        {{/if}}
+        </span>
+      </a>
+    {{ /each }}
     </div>
   {{ else }}
     {{> login }}
