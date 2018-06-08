@@ -21,6 +21,12 @@ Template.notification.events({
       var friend_right = Meteor.user().emails[0]["address"];
       Friends.insert({friend_left: friend_left, friend_right: friend_right});
       Friends.insert({friend_left: friend_right, friend_right: friend_left});
+      ChatRooms.insert({
+        title: "",
+        type: "__friend__",
+        members: [friend_left,friend_right],
+        messages: []
+      });
       Notifications.insert({
         title: this.title,
         description: friend_left + " is now your friend." ,
@@ -44,7 +50,6 @@ Template.notification.events({
           console.log( error );
         }else{
           var description = $(event.target).parent().children(".mt-2").attr("id");
-
           Notifications.insert({
             title: this.title,
             description: "Creator has accepted your request. Congrats!" ,

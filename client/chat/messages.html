@@ -28,17 +28,18 @@
 
 <template name='all-chatrooms'>
   {{ #if currentUser }}
-    <div class="collection">
-      {{ #each chatroom in chatrooms }}
-        <a href="/chat/room/{{ chatroom._id._str }}" class="collection-item avatar">
-          <img src="/images/avatar.png" alt="" class="circle">
-          <span class="title">
-            {{ #each email in chatroom.members }}
-              {{ email }},
-            {{ /each }}
-          </span>
-          <p>Last message</p>
-        </a>
+    <div class="collection" style="text-align:center;">
+      {{ #each chatrooms }}
+        <tr>
+          {{#if tuple_chat title}}
+            <td><h6>{{title}}</h6></td>
+          {{else}}
+            <td><h6>{{not_me members}}</h6></td>
+          {{/if}}
+          <td>
+            <button style="float: right" class="btn btn-small">Chat</button>
+          </td>
+        </tr>
       {{ /each }}
     </div>
   {{ else }}
