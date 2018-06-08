@@ -54,8 +54,7 @@ Template.createTuple.events({
       ChatRooms.insert({
         title: title,
         type: "__tuple__",
-        members: [creator],
-        messages: []
+        members: [creator]
       });
       sAlert.success('Tuple is created!');
       Router.go("/");
