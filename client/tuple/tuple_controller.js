@@ -7,7 +7,7 @@ Template.tupleDescription.events({
   'click button':function(event){
     event.preventDefault();
     if (!Meteor.user()) {
-      alert("You need to be logged in");
+      sAlert.error("You need to be logged in");
       Router.go("login");
       return false;
     }
