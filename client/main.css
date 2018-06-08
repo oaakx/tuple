@@ -38,6 +38,9 @@ html, body {
   flex-grow: 0;
 }
 
+.main-container .generic-body {
+  flex-grow: 1;
+}
 
 h4 {
   padding-top: 5px;
