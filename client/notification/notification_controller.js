@@ -45,11 +45,30 @@ Template.notification.events({
       var user = Meteor.user().emails[0]["address"];
       var guest = this.description.split(" ")[0];
 
+
       Meteor.call('updateTuple', this.title, guest, ( error )=>{
         if ( error ){
           console.log( error );
         }else{
           var description = $(event.target).parent().children(".mt-2").attr("id");
+          
+          var the_tuple = ChatRooms.findOne({title: this.title, type: "__tuple__"});          
+          var old_tuple_id = ChatRooms.findOne({title: this.title, type: "__tuple__"})._id;
+          var tuple_members = the_tuple.members;
+          var messages = the_tuple.messages;
+          tuple_members.push(description.split(" ")[0]);
+
+          ChatRooms.remove(old_tuple_id);
+          ChatRooms.insert({
+            title: this.title,
+            type: "__tuple__",
+            members: tuple_members,
+            messages: messages
+          });          
+
+          // console.log(this.title);
+
+
           Notifications.insert({
             title: this.title,
             description: "Creator has accepted your request. Congrats!" ,

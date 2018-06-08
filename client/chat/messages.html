@@ -29,6 +29,7 @@
 <template name='all-chatrooms'>
   {{ #if currentUser }}
     <div class="collection" style="text-align:center;">
+      <table>
       {{ #each chatrooms }}
         <tr>
           {{#if tuple_chat title}}
@@ -41,6 +42,7 @@
           </td>
         </tr>
       {{ /each }}
+      </table>
     </div>
   {{ else }}
     {{> login }}
