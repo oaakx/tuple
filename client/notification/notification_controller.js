@@ -21,6 +21,12 @@ Template.notification.events({
       var friend_right = Meteor.user().emails[0]["address"];
       Friends.insert({friend_left: friend_left, friend_right: friend_right});
       Friends.insert({friend_left: friend_right, friend_right: friend_left});
+      ChatRooms.insert({
+        title: "",
+        type: "__friend__",
+        members: [friend_left,friend_right],
+        messages: []
+      });
       Notifications.insert({
         title: this.title,
         description: friend_left + " is now your friend." ,
@@ -39,11 +45,29 @@ Template.notification.events({
       var user = Meteor.user().emails[0]["address"];
       var guest = this.description.split(" ")[0];
 
+
       Meteor.call('updateTuple', this.title, guest, ( error )=>{
         if ( error ){
           console.log( error );
         }else{
           var description = $(event.target).parent().children(".mt-2").attr("id");
+          
+          var the_tuple = ChatRooms.findOne({title: this.title, type: "__tuple__"});          
+          var old_tuple_id = ChatRooms.findOne({title: this.title, type: "__tuple__"})._id;
+          var tuple_members = the_tuple.members;
+          var messages = the_tuple.messages;
+          tuple_members.push(description.split(" ")[0]);
+
+          ChatRooms.remove(old_tuple_id);
+          ChatRooms.insert({
+            title: this.title,
+            type: "__tuple__",
+            members: tuple_members,
+            messages: messages
+          });          
+
+          // console.log(this.title);
+
 
           Notifications.insert({
             title: this.title,
@@ -70,7 +94,7 @@ Template.notification.helpers({
   'notifs': function(){
       var url = location.href;
       if (!Meteor.user()) {
-        sAlert.error("You need to be logged in");
+        alert("You need to be logged in");
         Router.go("login");
         return false;
       }

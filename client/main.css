@@ -26,13 +26,13 @@ html, body {
   display: flex;
   flex-direction: column;
 }
-.all-container header {
-  flex-grow: 0;
-}
 .all-container .main-container {
   display: flex;
   flex-grow: 1;
   overflow: auto;
+}
+.all-container header {
+  flex-grow: 0;
 }
 .all-container footer {
   flex-grow: 0;
@@ -127,10 +127,8 @@ li.nav-item {
 
 
 div .s-alert-box-inner {
-  background-color: inherit; 
+  background-color: inherit;
 }
-
-
 
 .search_bar > button {
   display: inline-block !important;

@@ -108,12 +108,42 @@ Template.chatroom.helpers({
     let messages = ChatMessages.find({room_id: room_id}).fetch();
     return messages;
   },
-  isme: (author) => {
-    me = Meteor.user().emails[0].address;
-    return author == me;
+  not_me: function (email) {
+    if(email[0] !== Meteor.user().emails[0].address )
+      return email[0];
+    return email[1];
   },
+  tuple_chat: function (title) {
+    return title !== "";
+  }
+
 });
 
+// /* === A chatroom === */
+//
+// Router.route('/chat/room/:room_id', function() {
+//   // messages = controller.get_messages();
+//   this.render("chatroom-topbar", {to: "header"});
+//   this.render("chatroom");
+// });
+//
+// Template.chatroom.helpers({
+//   chatroom: () => {
+//     let room_id = Router.current().params['room_id'];
+//     let chatroom = ChatRooms.findOne(room_id);
+//     return chatroom;
+//   },
+//   messages: () => {
+//     let room_id = Router.current().params['room_id'];
+//     let messages = ChatMessages.find({room_id: room_id}).fetch();
+//     return messages;
+//   },
+//   isme: (author) => {
+//     me = Meteor.user().emails[0].address;
+//     return author == me;
+//   },
+// });
+//
 Template.chatroom.events({
   'submit #send-message-form': function(event) {
     event.preventDefault();

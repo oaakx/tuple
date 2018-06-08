@@ -1,13 +1,12 @@
 
 
 
-
 /* Handle request to join tuple */
 Template.tupleDescription.events({
   'click button':function(event){
     event.preventDefault();
     if (!Meteor.user()) {
-      sAlert.error("You need to be logged in");
+      alert("You need to be logged in");
       Router.go("login");
       return false;
     }
@@ -32,15 +31,13 @@ Template.tupleDescription.events({
 /* Handle Tuple creation */
 
 Template.createTuple.events({
-  'click #createTupleButton_': function(event) {
-      // preventDefault();
-      var todayDate = new Date();
+  'click button'(event, instance) {
+      let todayDate = new Date();
       var time = todayDate.getHours() + ":" + todayDate.getMinutes() + ":" + todayDate.getSeconds();
-
-      var bar = "-";
-      // var dateOfUpload = (todayDate.getMonth() + 1).toString().concat(bar, (todayDate.getDate()).toString(), bar, (todayDate.getFullYear()).toString(), bar, time.toString());
-      var title = $("#title").val();
-      var description = $("#description").val();
+      let bar = "-";
+      let dateOfUpload = (todayDate.getMonth() + 1).toString().concat(bar, (todayDate.getDate()).toString(), bar, (todayDate.getFullYear()).toString(), bar, time.toString());
+      let title = $("#title").val();
+      let description = $("#description").val();
       if (title.length>30){
         return false;
       }
@@ -54,9 +51,14 @@ Template.createTuple.events({
       if ( error ){
         sAlert.error(error);
       }
+      ChatRooms.insert({
+        title: title,
+        type: "__tuple__",
+        members: [creator],
+        messages: []
+      });
       sAlert.success('Tuple is created!');
       Router.go("/");
-      return;
     });
   },
 });

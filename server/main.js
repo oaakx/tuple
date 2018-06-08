@@ -11,6 +11,7 @@ Meteor.startup(() => {
         		description: description,
         		creator: creator,
         		members: members//,
+        		//type: type
       		});
 		},
 		updateTuple( title, guest){
@@ -45,8 +46,6 @@ Meteor.startup(() => {
       }
 
       return my_email;
-    }, 
-
-
+    }
 	});
 });

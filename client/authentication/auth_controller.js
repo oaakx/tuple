@@ -4,17 +4,17 @@ import { Mongo } from 'meteor/mongo'
 
 /* Routes */
 Router.route('/login',function(){
-  this.render("tuple_description_topbar",{to:"header"});
+  this.render("topnavbar",{to:"header"});
   this.render("login");
 });
 
 Router.route('/register',function(){
-  this.render("tuple_description_topbar",{to:"header"});
+  this.render("topnavbar",{to:"header"});
   this.render("register");
 });
 
 Router.route('/changepass',function(){
-  this.render("tuple_description_topbar",{to:"header"});
+  this.render("topnavbar",{to:"header"});
   this.render("changepass");
 });
 

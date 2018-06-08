@@ -3,7 +3,9 @@
     <header>
       {{> yield "header"}}
     </header>
-    <div class='main-container'>{{> yield}}</div>
+    <div class='main-container'>
+      {{> yield}}
+    </div>
     <footer>
       {{> bottomnavbar}}
     </footer>
@@ -23,7 +25,6 @@
 
 <!-- Align properly, add pictures -->
 <template name="bottomnavbar">
-  <!-- <footer  style="padding: 0px !important; position: fixed; bottom: 0px; width: 100%"> -->
     <nav class="nav-extended">
       <div class="nav-content">
         <ul class="tabs tabs-transparent">
@@ -34,7 +35,6 @@
         </ul>
       </div>
     </nav>
-  <!-- </footer> -->
 </template>
 
 <template name="topbarwithback">

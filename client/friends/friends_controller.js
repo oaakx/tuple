@@ -10,14 +10,11 @@ Template.friends_list.events({
         var friend_right = event.target.closest("tr").childNodes[1].innerHTML.trim();
 
         console.log("Removing ", friend_left, "--", friend_right);
-        
         setTimeout(function() {
             var connection_to_remove1 = Friends.findOne({friend_left: friend_left, friend_right: friend_right})._id;
             var connection_to_remove2 = Friends.findOne({friend_left: friend_right, friend_right: friend_left})._id;
             Friends.remove(connection_to_remove1);
             Friends.remove(connection_to_remove2);
-            console.log("removing ", connection_to_remove1);
-            console.log("removing ", connection_to_remove2);
         }, 1000)
     }
 });
@@ -95,7 +92,6 @@ function send_friend_request_notification(user, potential_friend) {
 function add_friends_pair(friend_left, friend_right) {
     Friends.insert({friend_left: friend_left, friend_right: friend_right});
     Friends.insert({friend_left: friend_right, friend_right: friend_left});
-    console.log(friend_left , " and ", friend_right, " are now friends");
 }
     
 
